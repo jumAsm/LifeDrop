@@ -1,0 +1,126 @@
+/* ----------------------------------------- */
+/* ABOUT US PAGE STYLES                      */
+/* ----------------------------------------- */
+
+
+/* ----------------------------------------- */
+/* عنوان الصفحة العلوي */
+/* ----------------------------------------- */
+.page-title-section {
+    text-align: center;
+    padding: 100px 0;
+    background-color: #ffffff;
+}
+
+.page-title-section h1 {
+    font-size: 3.5rem;
+    font-weight: 400;
+    color: #111;
+    margin: 0;
+}
+
+/* ----------------------------------------- */
+/* التنسيق الاساسي للبلوكات */
+/* ----------------------------------------- */
+.about-block {
+    padding: 100px 0;
+    width: 100%;
+}
+
+.about-split {
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.about-heading {
+    flex: 0 0 25%;
+}
+
+.about-heading h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.about-content {
+    flex: 1; 
+    max-width: 800px;
+}
+
+.about-content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+.about-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* ----------------------------------------- */
+/*  ألوان وخلفيات الأقسام */
+/* ----------------------------------------- */
+.bg-red {
+    background-color: #c62828;
+    color: #ffffff;
+}
+
+/* قسم الصورة */
+.bg-image {
+    background-image: url('images/aboutBlood.png'); 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; 
+    position: relative;
+    color: #ffffff;
+}
+
+.bg-image .overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6); 
+}
+
+.relative-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* القسم الأبيض */
+.bg-white {
+    background-color: #ffffff;
+    color: #333;
+    padding-bottom: 20px;
+}
+
+.bg-white .about-heading h2 {
+    color: #c62828;
+}
+
+/* ----------------------------------------- */
+/* تنسيق قائمة الأهداف */
+/* ----------------------------------------- */
+.goals-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.goals-list li {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 15px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.goals-list li::before {
+    content: "-";
+    position: absolute;
+    left: 0;
+    color: #c62828;
+}

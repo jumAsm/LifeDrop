@@ -1,0 +1,218 @@
+/* ----------------------------------------- */
+/* الستايل الموحد لكل الصفحات   */
+/* ----------------------------------------- */
+
+/*اعدادات الصغحة الاساسية */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #ffffff;
+    color: #333;
+}
+
+/* حاوية موحدة لضبط العرض لجميع السكاشن */
+.container {
+    width: 94%;
+    max-width: 1500px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/* الازرار الموحدة للموقع */
+.btn-main {
+    background-color: #c62828;
+    color: white;
+    padding: 10px 28px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 50px;
+    transition: 0.3s;
+}
+
+.btn-main:hover {
+    background-color: #222;
+}
+
+.btn-solid-dark {
+    display: inline-block;
+    background-color: #222;
+    border-radius: 50px;
+    color: #fff;
+    padding: 10px 28px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.btn-solid-dark:hover {
+    background-color: #c62828;
+}
+
+/* ----------------------------------------- */
+/* HEADER STYLING                            */
+/* ----------------------------------------- */
+.main-header {
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 3%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 45px;
+    margin-right: 12px;
+}
+
+.logo-text {
+    font-size: 22px;
+    font-weight: 700;
+    color: #c62828;
+    letter-spacing: 0.5px;
+}
+
+.nav-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 6px;
+    display: flex;
+    gap: 5px;
+    background-color: #f0eee9;
+    border-radius: 50px;
+}
+
+.nav-links li {
+    margin: 0;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #555;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 5px 26px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    display: block;
+}
+
+.nav-links li a:hover,
+.nav-links li a.active {
+    background-color: #ffffff;
+    color: #111;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.nav-btn-dark {
+    background-color: #222;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 10px 28px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.nav-btn-dark:hover {
+    background-color: #c62828;
+    color: #ffffff;
+}
+
+/* ----------------------------------------- */
+/* FOOTER STYLING                            */
+/* ----------------------------------------- */
+.main-footer {
+    background-color: #222;
+    color: #ffffff;
+    width: 100%;
+    margin: 60px 0 0 0;
+    padding: 30px 0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 94%;
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+.footer-logo {
+    flex: 0 0 auto;
+    padding-right: 30px;
+}
+
+.footer-logo img {
+    height: 40px;
+    display: block;
+}
+
+.footer-middle {
+    flex: 1;
+    border-left: 1px solid #444444;
+    padding-left: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+}
+
+.footer-inline-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 20px;
+}
+
+.footer-inline-links li a {
+    text-decoration: none;
+    color: #bbbbbb;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.footer-inline-links li a:hover {
+    color: #ffffff;
+}
+
+.copyright {
+    font-size: 0.85rem;
+    color: #999;
+    margin: 0;
+}
+
+.footer-right {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.support-email {
+    font-size: 0.85rem;
+    color: #999;
+    margin: 0;
+}
