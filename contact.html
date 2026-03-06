@@ -1,3 +1,248 @@
-/* ----------------------------------------- */
-/* صفحة التواصل */
-/* ----------------------------------------- */
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<title>LifeDrop - Contact Us</title>
+<link rel="stylesheet" href="global.css">
+<link rel="stylesheet" href="contact.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+<header class="main-header">
+
+<div class="logo">
+<img src="images/logo.png" alt="LifeDrop Logo">
+</div>
+
+<nav class="nav-wrapper">
+<ul class="nav-links">
+<li><a href="home.html">Home</a></li>
+<li><a href="search.html">Find a Donor</a></li>
+<li><a href="about.html">About Us</a></li>
+<li><a href="contact.html" class="active">Contact Us</a></li>
+</ul>
+
+<a href="register.html" class="nav-btn-dark">Become a Donor</a>
+</nav>
+
+</header>
+
+<section class="contact-section">
+
+<div class="container contact-layout">
+
+<div class="contact-form-box">
+
+<h2>Send Us a Message</h2>
+
+<form class="contact-form">
+
+<div class="form-row">
+<input
+type="text"
+name="firstName"
+placeholder="First Name"
+pattern="[A-Za-z\u0600-\u06FF ]{2,}"
+title="Please enter a valid first name using letters only"
+required
+>
+
+<input
+type="text"
+name="lastName"
+placeholder="Last Name"
+pattern="[A-Za-z\u0600-\u06FF ]{2,}"
+title="Please enter a valid last name using letters only"
+required
+>
+</div>
+
+<div class="form-row">
+<select name="gender" required>
+<option value="">Select Gender</option>
+<option value="Female">Female</option>
+<option value="Male">Male</option>
+</select>
+
+<input
+type="tel"
+name="mobile"
+placeholder="Mobile Number"
+pattern="[0-9]{10}"
+minlength="10"
+maxlength="10"
+title="Please enter a valid mobile number (10 digits, numbers only)"
+required
+>
+</div>
+
+<div class="form-row">
+<input
+type="date"
+name="dob"
+required
+>
+
+<input
+type="email"
+name="email"
+placeholder="Email Address"
+title="Please enter a valid email address (example: name@gmail.com) "
+required
+>
+</div>
+
+<select name="language" required>
+<option value="">Preferred Language</option>
+<option value="Arabic">Arabic</option>
+<option value="English">English</option>
+<option value="French">French</option>
+</select>
+
+<textarea
+name="message"
+placeholder="Write your message here..."
+rows="8"
+minlength="10"
+title="Message must be at least 10 characters"
+required
+></textarea>
+
+<button type="submit" class="send-btn">Send Message</button>
+
+</form>
+</div>
+
+<div class="contact-info-box">
+
+<h2>Get in Touch</h2>
+
+<p class="contact-desc">
+We are here to help you with any questions about LifeDrop.
+Feel free to contact our team and we will respond as soon as possible.
+</p>
+
+<div class="info-text">
+<p><strong>Email:</strong></p>
+<p>info@lifedrop.com</p>
+</div>
+
+<div class="info-text">
+<p><strong>Phone:</strong></p>
+<p>+966 50 000 0000</p>
+</div>
+
+<div class="info-text">
+<p><strong>Address:</strong></p>
+<p>Jeddah, Saudi Arabia</p>
+</div>
+
+<div class="info-text">
+<p><strong>Follow us</strong></p>
+
+<div class="social-icons">
+<i class="fa-brands fa-instagram"></i>
+<i class="fa-brands fa-twitter"></i>
+<i class="fa-brands fa-facebook"></i>
+<i class="fa-brands fa-linkedin"></i>
+</div>
+
+</div>
+</div>
+
+</div>
+
+</section>
+
+<section class="faq-section">
+
+<div class="container">
+
+<h2>Your Common Queries Answered <br> with Additional FAQs</h2>
+
+<p class="faq-subtitle">
+Find answers to the most common questions about LifeDrop and how
+the platform helps donors and patients.
+</p>
+
+<div class="faq-layout">
+
+<div class="faq-left">
+
+<div class="faq-item">
+<div class="faq-question">How can I register as a donor?</div>
+<div class="faq-answer">
+You can register through the donor registration page by entering your personal information and blood type.
+</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">How can I get in touch with customer support?</div>
+<div class="faq-answer">
+You can contact us by filling out the contact form on this page, and our team will respond as soon as possible.
+</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">How do you ensure data security and privacy?</div>
+<div class="faq-answer">
+We aim to keep all user information secure and only use it for donation-related purposes.
+</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">How do I search for a donor?</div>
+<div class="faq-answer">
+You can search for donors by blood type and city through the Find a Donor page.
+</div>
+</div>
+
+</div>
+
+<div class="faq-right">
+<div class="faq-image-box">
+<img src="images/contact2.png" alt="Blood Donation">
+</div>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<footer class="main-footer">
+
+<div class="footer-container">
+
+<div class="footer-logo">
+<img src="images/logoLight.png" alt="LifeDrop Logo">
+</div>
+
+<div class="footer-middle">
+
+<ul class="footer-inline-links">
+<li><a href="about.html">About</a></li>
+<li><a href="search.html">Find a Donor</a></li>
+<li><a href="register.html">Register</a></li>
+<li><a href="contact.html">Support</a></li>
+</ul>
+
+<p class="copyright">
+© 2026 LifeDrop System. All rights reserved.
+</p>
+
+</div>
+
+<div class="footer-right">
+<p class="support-email">info@lifedrop.com</p>
+</div>
+
+</div>
+
+</footer>
+
+</body>
+</html>
