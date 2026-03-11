@@ -1,0 +1,277 @@
+/* --- التنسيق الهيكلي الموحد --- */
+
+.page-title-section {
+    text-align: center;
+    padding: 100px 0;
+    background-color: #ffffff;
+}
+
+.page-title-section h1 {
+    font-size: 3.5rem;
+    font-weight: 400;
+    color: #111;
+}
+
+.search-block {
+    padding: 100px 0;
+    width: 100%;
+}
+
+.search-split {
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.search-heading {
+    flex: 0 0 25%;
+}
+
+.search-heading h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+.search-content {
+    flex: 1; 
+    max-width: 800px;
+}
+
+/* --- تنسيق قسم الخلفية المحدث (صورة + تثبيت) --- */
+.bg-image {
+    position: relative;
+    background-image: url('images/blood_donation.jpeg'); /* تأكدي من مسار الصورة */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* تأثير التثبيت (Parallax) مثل About */
+    padding: 120px 0;
+    width: 100%;
+    color: #ffffff;
+}
+
+.banner-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* تعتيم الصورة لبروز النص */
+    z-index: 1;
+}
+
+.relative-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* --- الألوان المشتركة --- */
+.bg-red { background-color: #c62828; color: #ffffff; }
+.bg-white { background-color: #ffffff; color: #333; }
+.bg-white .search-heading h2 { color: #c62828; }
+
+/* --- تنسيق الفلتر (داخل الصورة) --- */
+.filter-inputs {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.filter-inputs select {
+    flex: 1;
+    padding: 15px;
+    border-radius: 12px;
+    border: none;
+    font-size: 1rem;
+    outline: none;
+    background: #fff;
+    font-family: inherit;
+}
+
+.btn-outline-white {
+    display: inline-block;
+    border: 2px solid #ffffff;
+    border-radius: 50px;
+    color: #ffffff;
+    padding: 12px 30px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: bold;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-white:hover {
+    background-color: #ffffff;
+    color: #c62828;
+    transform: translateY(-2px);
+}
+
+/* --- كروت النتائج التفاعلية --- */
+.results-meta {
+    margin-bottom: 30px;
+    font-weight: 600;
+    color: #666;
+}
+
+.donor-card {
+    background-color: #f5f2ee; 
+    padding: 30px;
+    border-radius: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    cursor: pointer;
+}
+
+/* تأثير تحول اللون والطفو (مثل فيديو Home) */
+.donor-card:hover {
+    background-color: #c62828 !important;
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(198, 40, 40, 0.2);
+}
+
+.donor-main-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.blood-badge {
+    background-color: #c62828;
+    color: #fff;
+    width: 60px;
+    height: 60px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    font-weight: 800;
+    transition: 0.3s;
+}
+
+.donor-text h3 {
+    margin: 0;
+    font-size: 1.6rem;
+    color: #111;
+    transition: 0.3s;
+}
+
+.donor-text p {
+    margin: 5px 0;
+    color: #666;
+    font-size: 0.95rem;
+    transition: 0.3s;
+}
+
+.donor-text p i { color: #c62828; margin-right: 5px; transition: 0.3s; }
+
+.availability {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #2e7d32;
+    letter-spacing: 0.5px;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+/* النقطة الخضراء */
+.availability::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    background-color: #2e7d32;
+    border-radius: 50%;
+    margin-right: 8px;
+    display: inline-block;
+}
+
+/* تحويل الألوان للأبيض عند Hover */
+.donor-card:hover h3, 
+.donor-card:hover p, 
+.donor-card:hover i,
+.donor-card:hover .availability {
+    color: #ffffff !important;
+}
+
+.donor-card:hover .blood-badge {
+    background-color: #ffffff;
+    color: #c62828;
+}
+
+.donor-card:hover .availability::before {
+    background-color: #ffffff;
+}
+
+/* زر CONTACT داخل الكرت */
+.donor-card .btn-solid-dark {
+    transition: 0.3s;
+}
+
+.donor-card:hover .btn-solid-dark {
+    background-color: #ffffff;
+    color: #c62828;
+}
+/* ----------------------------------------- */
+/* RESPONSIVE DESIGN (للجوال والأجهزة اللوحية) */
+/* ----------------------------------------- */
+
+@media (max-width: 992px) {
+    /* تحويل التقسيم الجانبي إلى عمودي */
+    .search-split {
+        flex-direction: column;
+        gap: 30px;
+        padding: 50px 0;
+    }
+
+    /* جعل العناوين الجانبية تأخذ العرض الكامل */
+    .search-heading {
+        flex: 0 0 100%;
+        text-align: center;
+    }
+
+    .search-content {
+        max-width: 100%;
+    }
+
+    /* جعل حقول الاختيار تظهر تحت بعضها في الجوال */
+    .filter-inputs {
+        flex-direction: column;
+    }
+
+    /* كرت المتبرع: تحويل العناصر لتكون تحت بعضها */
+    .donor-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+        padding: 25px;
+    }
+
+    .donor-main-info {
+        flex-direction: column;
+    }
+
+    .donor-text p {
+        justify-content: center;
+    }
+
+    /* جعل الأزرار تأخذ عرضاً أكبر لسهولة الضغط */
+    .btn-outline-white, .btn-solid-dark {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-title-section h1 {
+        font-size: 2.5rem;
+    }
+
+    .search-heading h2 {
+        font-size: 1.2rem;
+    }
+}
