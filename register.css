@@ -1,0 +1,461 @@
+.register-top {
+    text-align: center;
+    padding: 90px 20px 50px;
+    background-color: #f5f5f5;
+}
+
+.register-top h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 16px;
+    color: #111;
+}
+
+.register-top h1 span {
+    color: #c62828;
+}
+
+.register-top p {
+    max-width: 650px;
+    margin: 0 auto;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #666;
+}
+
+/* ----------------------------------------- */
+/* STEPS INDICATOR                           */
+/* ----------------------------------------- */
+
+.steps-wrapper {
+    background-color: #fff;
+    padding: 40px 0 0;
+}
+
+.steps-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    max-width: 600px;
+    margin: 0 auto 50px;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.step-circle {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: #f0eee9;
+    border: 2px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #999;
+    transition: all 0.3s ease;
+}
+
+.step-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+.step.active .step-circle {
+    background-color: #c62828;
+    border-color: #c62828;
+    color: #fff;
+}
+
+.step.active .step-label {
+    color: #c62828;
+}
+
+.step.done .step-circle {
+    background-color: #222;
+    border-color: #222;
+    color: #fff;
+}
+
+.step.done .step-label {
+    color: #222;
+}
+
+.step-line {
+    flex: 1;
+    height: 2px;
+    background-color: #e0e0e0;
+    margin-bottom: 24px;
+    max-width: 80px;
+}
+
+.step-line.done {
+    background-color: #222;
+}
+
+/* ----------------------------------------- */
+/* REGISTER MAIN SECTION                     */
+/* ----------------------------------------- */
+
+.register-section {
+    padding: 0 0 80px;
+    background-color: #ffffff;
+}
+
+.register-layout {
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+    align-items: flex-start;
+}
+
+/* ----------------------------------------- */
+/* FORM BOX                                  */
+/* ----------------------------------------- */
+
+.register-form-box {
+    flex: 1.2;
+    background-color: #f5f2ee;
+    padding: 50px 40px;
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+}
+
+.register-form-box h2 {
+    font-size: 2rem;
+    color: #111;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.register-form-box h2::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: #c62828;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.form-subtitle {
+    font-size: 1rem;
+    color: #777;
+    margin-bottom: 30px;
+    margin-top: 16px;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-row {
+    display: flex;
+    gap: 16px;
+}
+
+.form-row input,
+.form-row select {
+    flex: 1;
+}
+
+.register-form input,
+.register-form select,
+.register-form textarea {
+    width: 100%;
+    padding: 16px 18px;
+    border: none;
+    border-radius: 12px;
+    background-color: #ffffff;
+    font-size: 1rem;
+    color: #111;
+    outline: none;
+    font-family: inherit;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.register-form input:focus,
+.register-form select:focus,
+.register-form textarea:focus {
+    border: 2px solid #c62828;
+    box-shadow: 0 6px 18px rgba(198, 40, 40, 0.15);
+    transform: translateY(-2px);
+}
+
+.register-form input::placeholder,
+.register-form textarea::placeholder {
+    color: #aaa;
+}
+
+/* section label inside form */
+.form-section-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #c62828;
+    margin-top: 8px;
+    margin-bottom: -4px;
+}
+
+/* blood type grid */
+.blood-type-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.blood-type-btn {
+    background-color: #fff;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 14px 10px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    text-align: center;
+    font-family: inherit;
+}
+
+.blood-type-btn:hover {
+    border-color: #c62828;
+    color: #c62828;
+    background-color: #fff5f5;
+}
+
+.blood-type-btn.selected {
+    background-color: #c62828;
+    border-color: #c62828;
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(198, 40, 40, 0.3);
+}
+
+/* hidden input for blood type */
+#bloodTypeInput {
+    display: none;
+}
+
+/* checkbox agreement */
+.checkbox-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: 4px;
+}
+
+.checkbox-row input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    accent-color: #c62828;
+    cursor: pointer;
+    padding: 0;
+    border: none;
+    transform: none;
+}
+
+.checkbox-row input[type="checkbox"]:focus {
+    box-shadow: none;
+    transform: none;
+    border: none;
+}
+
+.checkbox-row label {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.5;
+    cursor: pointer;
+}
+
+.checkbox-row label a {
+    color: #c62828;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.checkbox-row label a:hover {
+    text-decoration: underline;
+}
+
+.register-btn {
+    display: inline-block;
+    width: fit-content;
+    background-color: #222;
+    color: #ffffff;
+    padding: 16px 40px;
+    border: none;
+    border-radius: 16px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    margin-top: 8px;
+}
+
+.register-btn:hover {
+    background-color: #c62828;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(198, 40, 40, 0.3);
+}
+
+.login-prompt {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.95rem;
+    color: #777;
+}
+
+.login-prompt a {
+    color: #c62828;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.login-prompt a:hover {
+    text-decoration: underline;
+}
+
+/* ----------------------------------------- */
+/* SIDE INFO BOX                             */
+/* ----------------------------------------- */
+
+.register-info-box {
+    flex: 0.8;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding-top: 10px;
+}
+
+.register-info-box h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #111;
+    line-height: 1.3;
+    margin: 0 0 6px;
+}
+
+.register-info-box > p {
+    font-size: 1.05rem;
+    color: #666;
+    line-height: 1.7;
+    margin: 0 0 20px;
+}
+
+.benefit-card {
+    background-color: #f5f2ee;
+    border-radius: 20px;
+    padding: 24px 28px;
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    transition: all 0.3s ease;
+}
+
+.benefit-card:hover {
+    background-color: #c62828;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(198, 40, 40, 0.2);
+}
+
+.benefit-icon {
+    font-size: 1.8rem;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.benefit-text h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #111;
+    margin: 0 0 6px;
+    transition: color 0.3s ease;
+}
+
+.benefit-text p {
+    font-size: 0.92rem;
+    color: #666;
+    margin: 0;
+    line-height: 1.5;
+    transition: color 0.3s ease;
+}
+
+.benefit-card:hover .benefit-text h4 {
+    color: #fff;
+}
+
+.benefit-card:hover .benefit-text p {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* blood drop image placeholder */
+.register-image-box {
+    background-color: #f0eee9;
+    border-radius: 24px;
+    overflow: hidden;
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.register-image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* ----------------------------------------- */
+/* RESPONSIVE                                */
+/* ----------------------------------------- */
+
+@media (max-width: 992px) {
+    .register-layout {
+        flex-direction: column;
+    }
+
+    .register-form-box,
+    .register-info-box {
+        width: 100%;
+        max-width: 640px;
+        margin: 0 auto;
+    }
+
+    .register-top h1 {
+        font-size: 2.5rem;
+    }
+
+    .blood-type-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .blood-type-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .form-row {
+        flex-direction: column;
+    }
+}
