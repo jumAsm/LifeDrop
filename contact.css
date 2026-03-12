@@ -104,14 +104,13 @@
     width: 100%;
 }
 
-/* 👈 إجبار الحقول في نفس السطر على نفس المقاس بالضبط */
+
 .form-row input,
 .form-row select {
     flex: 1 1 0;
     min-width: 0;
 }
 
-/* 👈 توحيد الارتفاع عشان ما يطلع مربع الجنس أمتن من الباقي */
 .contact-form input,
 .contact-form select {
     height: 50px;
