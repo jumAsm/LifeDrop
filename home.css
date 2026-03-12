@@ -38,7 +38,7 @@
 }
 
 .highlight {
-    color: #ff5252;
+    color: #c62828;
 }
 
 .hero-button {
@@ -103,37 +103,10 @@
 
 .info-card p {
     font-size: 1rem;
-    color: #666;
+    color: #111;
     line-height: 1.6;
     margin: 0;
     transition: all 0.4s ease;
-}
-
-/* Card Hover States */
-.info-card.active-card {
-    background-color: #222;
-}
-
-.info-card.active-card .card-number,
-.info-card.active-card h3 {
-    color: #ffffff;
-}
-
-.info-card.active-card p {
-    color: #cccccc;
-}
-
-.cards-grid:hover .info-card.active-card {
-    background-color: #f0eee9;
-}
-
-.cards-grid:hover .info-card.active-card .card-number,
-.cards-grid:hover .info-card.active-card h3 {
-    color: #111;
-}
-
-.cards-grid:hover .info-card.active-card p {
-    color: #666;
 }
 
 .cards-grid .info-card:hover,
@@ -141,7 +114,7 @@
     background-color: #c62828;
     transform: scale(1.05) translateY(-5px);
     z-index: 10;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 10px 25px rgba(198, 40, 40, 0.2);
 }
 
 .cards-grid .info-card:hover .card-number,

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="search.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
+
 <body>
 
     <header class="main-header">
@@ -17,7 +19,7 @@
                 <li><a href="home.html">Home</a></li>
                 <li><a href="search.html" class="active">Find a Donor</a></li>
                 <li><a href="about.html">About Us</a></li>
-                <li><a href="contact.html">Contact Us</a></li> 
+                <li><a href="contact.html">Contact Us</a></li>
             </ul>
             <a href="register.html" class="nav-btn-dark">Become a Donor</a>
         </nav>
@@ -25,7 +27,8 @@
 
 
     <section class="search-banner bg-image">
-        <div class="banner-overlay"></div> <div class="container search-split relative-content">
+        <div class="banner-overlay"></div>
+        <div class="container search-split relative-content">
             <div class="search-heading">
                 <h2>FIND A HERO</h2>
             </div>
@@ -35,15 +38,21 @@
                     <div class="filter-inputs">
                         <select id="bloodType">
                             <option value="">Select Blood Type</option>
-                            <option>O+</option><option>O-</option>
-                            <option>A+</option><option>A-</option>
-                            <option>B+</option><option>B-</option>
-                            <option>AB+</option><option>AB-</option>
+                            <option>O+</option>
+                            <option>O-</option>
+                            <option>A+</option>
+                            <option>A-</option>
+                            <option>B+</option>
+                            <option>B-</option>
+                            <option>AB+</option>
+                            <option>AB-</option>
                         </select>
                         <select id="city">
                             <option value="">Select City</option>
-                            <option>Jeddah</option><option>Riyadh</option>
-                            <option>Mecca</option><option>Dammam</option>
+                            <option>Jeddah</option>
+                            <option>Riyadh</option>
+                            <option>Mecca</option>
+                            <option>Dammam</option>
                         </select>
                     </div>
                     <button type="button" class="btn-outline-white">SEARCH</button>
@@ -54,12 +63,12 @@
 
     <section class="search-block bg-white">
         <div class="container search-split">
-            <div class="search-heading">
-                <h2>VERIFIED<br>RESULTS</h2>
+            <div class="results-header">
+                <h2>Available Donors<br> <span>ready to help</span></h2>
             </div>
             <div class="search-content">
                 <div class="results-meta">3 Heroes available for donation</div>
-                
+
                 <div class="donor-card">
                     <div class="donor-main-info">
                         <div class="blood-badge">O+</div>
@@ -76,9 +85,9 @@
                     <div class="donor-main-info">
                         <div class="blood-badge">A-</div>
                         <div class="donor-text">
-                            <h3>Sarah Khalil</h3>
-                            <p><i class="fa-solid fa-location-dot"></i> Riyadh, Saudi Arabia</p>
-                            <span class="availability">AVAILABLE NOW</span>
+                            <h3>Ruba Jamal/h3>
+                                <p><i class="fa-solid fa-location-dot"></i> Riyadh, Saudi Arabia</p>
+                                <span class="availability">AVAILABLE NOW</span>
                         </div>
                     </div>
                     <a href="tel:05000000" class="btn-solid-dark">CONTACT</a>
@@ -108,4 +117,5 @@
     </footer>
 
 </body>
+
 </html>

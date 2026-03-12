@@ -4,25 +4,22 @@
 
 .contact-top {
     text-align: center;
-    padding: 90px 20px 40px;
-    background-color:#f5f5f5;
+    padding: 50px 20px 20px; /* تقليل المساحة الفاضية فوق العنوان */
+    background-color: #f5f5f5;
 }
 
 .contact-top h1 {
-    font-size: 3.5rem;
+    font-size: 2.8rem; 
     font-weight: 800;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     color: #111;
-}
-
-.contact-top h1 span {
-    color: #c62828;
+    line-height: 1.3;
 }
 
 .contact-top p {
-    max-width: 700px;
+    max-width: 600px;
     margin: 0 auto;
-    font-size: 1.2rem;
+    font-size: 1.05rem;
     line-height: 1.6;
     color: #666;
 }
@@ -32,52 +29,51 @@
 /* ----------------------------------------- */
 
 .contact-section {
-    padding: 40px 0;
-    margin-bottom: 40px;
+    padding: 30px 0; /* تقليل المساحة الفاضية فوق وتحت الفورم */
     background-color: #ffffff;
 }
 
 .contact-layout {
     display: flex;
     justify-content: space-between;
-    gap: 40px;
+    gap: 50px; /* زيادة بسيطة للفراغ بين الفورم والنص لترتيب العين */
     align-items: flex-start;
+    max-width: 1100px; /* 👈 السر هنا: يمنع الفورم من التمطي والاتساع المزعج في الشاشات الكبيرة */
+    margin: 0 auto; /* يوسط المحتوى */
 }
 
 .contact-form-box {
-    flex: 1;
+    flex: 1.2;
     background-color: #f5f2ee;
-    padding: 40px 30px;
-    border-radius: 24px;
+    padding: 35px 30px;
+    border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
 }
 
 .contact-info-box {
-    flex: 1;
-    padding: 40px 10px;
+    flex: 0.8;
+    padding: 20px 10px;
 }
 
 .contact-form-box h2,
 .contact-info-box h2 {
-    font-size: 2.4rem;
+    font-size: 1.8rem;
     color: #111;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     font-weight: 700;
     line-height: 1.3;
 }
 
-.contact-desc{
-    font-size:1.05rem;
-    line-height:1.6;
-    color:#666;
-    margin-bottom:30px;
+.contact-desc {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 25px;
 }
 
-/* spacing between contact info lines */
 .contact-info-box p {
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
-
 
 .contact-form-box h2 {
     position: relative;
@@ -86,55 +82,84 @@
 .contact-form-box h2::after {
     content: "";
     display: block;
-    width: 70px;
+    width: 60px;
     height: 4px;
     background-color: #c62828;
     border-radius: 10px;
-    margin-top: 10px;
+    margin-top: 8px;
 }
 
+/* ----------------------------------------- */
+/* FORM INPUTS & SELECTS                     */
+/* ----------------------------------------- */
 .contact-form {
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 15px; 
 }
 
 .form-row {
     display: flex;
-    gap: 16px;
+    gap: 15px;
+    width: 100%;
 }
 
+/* 👈 إجبار الحقول في نفس السطر على نفس المقاس بالضبط */
 .form-row input,
 .form-row select {
-    flex: 1;
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+/* 👈 توحيد الارتفاع عشان ما يطلع مربع الجنس أمتن من الباقي */
+.contact-form input,
+.contact-form select {
+    height: 50px;
 }
 
 .contact-form input,
 .contact-form textarea,
 .contact-form select {
     width: 100%;
-    padding: 16px 18px;
-    border: none;
-    border-radius: 12px;
+    padding: 0 20px; /* تم التعديل لضبط النص داخل الارتفاع الثابت */
+    border: 2px solid transparent; 
+    border-radius: 50px; 
     background-color: #ffffff;
-    font-size: 1rem;
+    font-size: 0.95rem;
     color: #111;
     outline: none;
     font-family: inherit;
     box-sizing: border-box;
+    transition: all 0.3s ease;
+    margin: 0;
+}
+
+.contact-form select {
+    cursor: pointer;
+    padding-right: 10px; 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none; 
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 20px center; 
+    background-size: 15px; 
 }
 
 .contact-form textarea {
+    height: auto;
+    padding: 15px 20px;
     resize: none;
-    min-height: 200px;
+    min-height: 150px;
     display: block;
+    border-radius: 20px; 
 }
 
 .contact-form input:focus,
 .contact-form select:focus,
 .contact-form textarea:focus {
     border: 2px solid #c62828;
-    box-shadow: 0 6px 18px rgba(198,40,40,0.15);
+    box-shadow: 0 4px 12px rgba(198, 40, 40, 0.15);
     transform: translateY(-2px);
 }
 
@@ -143,21 +168,22 @@
     width: fit-content;
     background-color: #222;
     color: #ffffff;
-    padding: 16px 36px;
+    padding: 12px 30px;
     border: none;
-    border-radius: 16px;
+    border-radius: 50px;
     text-decoration: none;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: bold;
     cursor: pointer;
     transition: 0.3s ease;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    margin-top: 5px;
 }
 
 .send-btn:hover {
     background-color: #c62828;
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(198,40,40,0.3);
+    box-shadow: 0 5px 15px rgba(198,40,40,0.2);
 }
 
 /* ----------------------------------------- */
@@ -165,14 +191,14 @@
 /* ----------------------------------------- */
 
 .info-text {
-    margin-bottom: 28px;
+    margin-bottom: 20px;
 }
 
 .info-text p {
-    margin: 0 0 8px 0;
-    color: #222;
-    font-size: 1.1rem;
-    line-height: 1.6;
+    margin: 0 0 5px 0;
+    color: #555;
+    font-size: 1rem;
+    line-height: 1.5;
 }
 
 .info-text p strong {
@@ -182,19 +208,19 @@
 .social-icons {
     display: flex;
     gap: 12px;
-    font-size: 24px;
+    font-size: 20px;
     color: #111;
+    margin-top: 10px;
 }
 
-.social-icons i{
-    font-size:22px;
-    cursor:pointer;
-    transition:0.3s;
+.social-icons i {
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-.social-icons i:hover{
-    color:#c62828;
-    transform:scale(1.1);
+.social-icons i:hover {
+    color: #c62828;
+    transform: scale(1.1);
 }
 
 /* ----------------------------------------- */
@@ -202,82 +228,70 @@
 /* ----------------------------------------- */
 
 .faq-section {
-    margin-top:0;
-    padding-top: 70px;
-    padding-bottom:120px;
+    margin-top: 0;
+    padding-top: 50px; /* تقليل الفراغ العلوي */
+    padding-bottom: 50px; /* تقليل الفراغ السفلي ليلتصق بالفوتر بنعومة */
     background-color: #f5f2ee;
 }
 
-
-
 .faq-section h2 {
     text-align: center;
-    font-size: 3rem;
+    font-size: 2.2rem;
     color: #111;
-    margin-bottom: 16px;
-    font-weight: 800;
+    margin-bottom: 12px;
+    font-weight: 700;
     line-height: 1.3;
+}
+
+.faq-section h2 span {
+    color: #c62828;
+    font-size: 1.9rem;
+    font-weight: 600;
+    font-style: italic;
 }
 
 .faq-subtitle {
     text-align: center;
-    max-width: 700px;
-    margin: 0 auto 50px;
-    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto 40px; 
+    font-size: 1rem;
     line-height: 1.6;
-    color: #666;
+    color: #555;
 }
 
 .faq-layout {
     display: flex;
-    justify-content: space-between;
-    gap: 24px;
+    justify-content: center; 
     align-items: flex-start;
-    margin-right:-20px;
 }
 
 .faq-left {
-    flex: 1;
+    width: 100%;
+    max-width: 750px; /* تصغير عرض كروت الأسئلة عشان تطلع ملمومة أكثر */
     display: flex;
     flex-direction: column;
-    gap: 18px;
-    
-}
-
-.faq-right {
-    flex: 1;
-    padding-right:0;
-}
-
-.faq-right img{
-width:100%;
-height:100%;
-object-fit:cover;
-border-radius:24px;
-display:block;
+    gap: 15px; 
 }
 
 .faq-item {
     background-color: #ffffff;
     border: 1px solid #ececec;
-    border-radius: 24px;
-    padding: 28px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    border-radius: 16px;
+    padding: 20px 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.02);
     transition: all 0.35s ease;
     cursor: pointer;
 }
 
 .faq-question {
-    font-size: 1.6rem;
-    font-weight: 700;
+    font-size: 1.15rem;
+    font-weight: 600;
     color: #111;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
 }
 
-/* hide answer by default */
-
 .faq-answer {
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     line-height: 1.6;
     color: #ffffff;
     opacity: 0;
@@ -286,12 +300,10 @@ display:block;
     transition: all 0.35s ease;
 }
 
-/* hover effect */
-
 .faq-item:hover {
     background-color: #c62828;
-    transform: translateY(-4px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(198, 40, 40, 0.15);
     border-color: #c62828;
 }
 
@@ -302,27 +314,7 @@ display:block;
 .faq-item:hover .faq-answer {
     opacity: 1;
     max-height: 200px;
-}
-
-/* ----------------------------------------- */
-/* FAQ IMAGE                                 */
-/* ----------------------------------------- */
-
-.faq-image-box {
-    background-color: #f0eee9;
-    height: 465px;
-    border-radius: 24px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.faq-image-box img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
+    margin-top: 10px;
 }
 
 /* ----------------------------------------- */
@@ -331,40 +323,33 @@ display:block;
 
 @media (max-width: 992px) {
     .contact-layout,
-    .faq-layout,
     .form-row {
         flex-direction: column;
     }
 
     .contact-form-box,
     .contact-info-box,
-    .faq-left,
-    .faq-right {
-    width: 100%;
-}
+    .faq-left {
+        width: 100%;
+    }
 
-   .contact-form-box{
-    max-width:600px;
-    margin:auto;
-}
-
+    .contact-form-box {
+        max-width: 600px;
+        margin: auto;
+    }
 
     .contact-top h1,
     .faq-section h2 {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
     }
 
     .contact-info-box {
         padding: 10px 0;
-         margin-top: 20px;
+        margin-top: 20px;
     }
-
-    .faq-image-box{
-    margin-top:20px;
 }
 
-
-
+/* إلغاء المسافة العلوية البيضاء للفوتر */
+.main-footer {
+    margin-top: 0;
 }
-
-
