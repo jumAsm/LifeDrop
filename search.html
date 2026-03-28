@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LifeDrop - Find a Donor</title>
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="search.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <header class="main-header">
+        <div class="logo"><img src="images/logo.png" alt="LifeDrop Logo"></div>
+        <nav class="nav-wrapper">
+            <ul class="nav-links">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="search.html" class="active">Find a Donor</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+            <a href="register.html" class="nav-btn-dark">Become a Donor</a>
+        </nav>
+    </header>
+
+
+    <section class="search-banner bg-image">
+        <div class="banner-overlay"></div>
+        <div class="container search-split relative-content">
+            <div class="search-heading">
+                <h2>FIND A HERO</h2>
+            </div>
+            <div class="search-content">
+                <p>Find a donor. Save a life. Access our verified donor network instantly</p>
+                <form class="search-filter-form">
+                    <div class="filter-inputs">
+                        <select id="bloodType">
+                            <option value="">Select Blood Type</option>
+                            <option>O+</option>
+                            <option>O-</option>
+                            <option>A+</option>
+                            <option>A-</option>
+                            <option>B+</option>
+                            <option>B-</option>
+                            <option>AB+</option>
+                            <option>AB-</option>
+                        </select>
+                        <select id="city">
+                            <option value="">Select City</option>
+                            <option>Jeddah</option>
+                            <option>Riyadh</option>
+                            <option>Mecca</option>
+                            <option>Dammam</option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn-outline-white">SEARCH</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="search-block bg-white">
+        <div class="container search-split">
+            <div class="results-header">
+                <h2>Available Donors<br> <span>ready to help</span></h2>
+            </div>
+            <div class="search-content">
+                <div class="results-meta">3 Heroes available for donation</div>
+
+                <div class="donor-card">
+                    <div class="donor-main-info">
+                        <div class="blood-badge">O+</div>
+                        <div class="donor-text">
+                            <h3>Ahmed Al-Saud</h3>
+                            <p><i class="fa-solid fa-location-dot"></i> Jeddah, Saudi Arabia</p>
+                            <span class="availability">AVAILABLE NOW</span>
+                        </div>
+                    </div>
+                    <a href="tel:05000000" class="btn-solid-dark">CONTACT</a>
+                </div>
+
+                <div class="donor-card">
+                    <div class="donor-main-info">
+                        <div class="blood-badge">A-</div>
+                        <div class="donor-text">
+                            <h3>Ruba Jamal/h3>
+                                <p><i class="fa-solid fa-location-dot"></i> Riyadh, Saudi Arabia</p>
+                                <span class="availability">AVAILABLE NOW</span>
+                        </div>
+                    </div>
+                    <a href="tel:05000000" class="btn-solid-dark">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="images/logoLight.png" alt="LifeDrop Logo">
+            </div>
+            <div class="footer-middle">
+                <ul class="footer-inline-links">
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="search.html">Find a Donor</a></li>
+                    <li><a href="register.html">Register</a></li>
+                    <li><a href="contact.html">Support</a></li>
+                </ul>
+                <p class="copyright">&copy; 2026 LifeDrop System. All rights reserved.</p>
+            </div>
+            <div class="footer-right">
+                <p class="support-email"> info@lifedrop.com</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

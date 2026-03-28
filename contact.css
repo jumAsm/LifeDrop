@@ -1,0 +1,385 @@
+/* ----------------------------------------- */
+/* CONTACT PAGE SPECIFIC STYLES              */
+/* ----------------------------------------- */
+
+.contact-top {
+    text-align: center;
+    padding: 50px 20px 20px; /* تقليل المساحة الفاضية فوق العنوان */
+    background-color: #f5f5f5;
+}
+
+.contact-top h1 {
+    font-size: 2.8rem; 
+    font-weight: 800;
+    margin-bottom: 15px;
+    color: #111;
+    line-height: 1.3;
+}
+
+.contact-top p {
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #666;
+}
+
+/* ----------------------------------------- */
+/* CONTACT MAIN SECTION                      */
+/* ----------------------------------------- */
+
+.contact-section {
+    padding: 30px 0; /* تقليل المساحة الفاضية فوق وتحت الفورم */
+    background-color: #ffffff;
+}
+
+.contact-layout {
+    display: flex;
+    justify-content: space-between;
+    gap: 50px; /* زيادة بسيطة للفراغ بين الفورم والنص لترتيب العين */
+    align-items: flex-start;
+    max-width: 1100px; /* 👈 السر هنا: يمنع الفورم من التمطي والاتساع المزعج في الشاشات الكبيرة */
+    margin: 0 auto; /* يوسط المحتوى */
+}
+
+.contact-form-box {
+    flex: 1.2;
+    background-color: #f5f2ee;
+    padding: 35px 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+}
+
+.contact-info-box {
+    flex: 0.8;
+    padding: 20px 10px;
+}
+
+.contact-form-box h2,
+.contact-info-box h2 {
+    font-size: 1.8rem;
+    color: #111;
+    margin-bottom: 10px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.contact-desc {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 25px;
+}
+
+.contact-info-box p {
+    margin-bottom: 10px;
+}
+
+.contact-form-box h2 {
+    position: relative;
+}
+
+.contact-form-box h2::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: #c62828;
+    border-radius: 10px;
+    margin-top: 8px;
+}
+
+/* ----------------------------------------- */
+/* FORM INPUTS & SELECTS                     */
+/* ----------------------------------------- */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; 
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+}
+
+
+.form-row input,
+.form-row select {
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+.contact-form input,
+.contact-form select {
+    height: 50px;
+}
+
+.contact-form input,
+.contact-form textarea,
+.contact-form select {
+    width: 100%;
+    padding: 0 20px; /* تم التعديل لضبط النص داخل الارتفاع الثابت */
+    border: 2px solid transparent; 
+    border-radius: 50px; 
+    background-color: #ffffff;
+    font-size: 0.95rem;
+    color: #111;
+    outline: none;
+    font-family: inherit;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    margin: 0;
+}
+
+.contact-form select {
+    cursor: pointer;
+    padding-right: 10px; 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none; 
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 20px center; 
+    background-size: 15px; 
+}
+
+.contact-form textarea {
+    height: auto;
+    padding: 15px 20px;
+    resize: none;
+    min-height: 150px;
+    display: block;
+    border-radius: 20px; 
+}
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+    border: 2px solid #c62828;
+    box-shadow: 0 4px 12px rgba(198, 40, 40, 0.15);
+    transform: translateY(-2px);
+}
+
+.send-btn {
+    display: inline-block;
+    width: fit-content;
+    background-color: #222;
+    color: #ffffff;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    margin-top: 5px;
+}
+
+.send-btn:hover {
+    background-color: #c62828;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(198,40,40,0.2);
+}
+
+/* ----------------------------------------- */
+/* CONTACT INFO SECTION                      */
+/* ----------------------------------------- */
+
+.info-text {
+    margin-bottom: 20px;
+}
+
+.info-text p {
+    margin: 0 0 5px 0;
+    color: #555;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.info-text p strong {
+    color: #c62828;
+}
+
+.social-icons {
+    display: flex;
+    gap: 12px;
+    font-size: 20px;
+    color: #111;
+    margin-top: 10px;
+}
+
+.social-icons i {
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.social-icons i:hover {
+    color: #c62828;
+    transform: scale(1.1);
+}
+
+/* ----------------------------------------- */
+/* FAQ SECTION                               */
+/* ----------------------------------------- */
+
+.faq-section {
+    margin-top: 0;
+    padding-top: 50px; /* تقليل الفراغ العلوي */
+    padding-bottom: 50px; /* تقليل الفراغ السفلي ليلتصق بالفوتر بنعومة */
+    background-color: #f5f2ee;
+}
+
+.faq-section h2 {
+    text-align: center;
+    font-size: 2.2rem;
+    color: #111;
+    margin-bottom: 12px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.faq-section h2 span {
+    color: #c62828;
+    font-size: 1.9rem;
+    font-weight: 600;
+    font-style: italic;
+}
+
+.faq-subtitle {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 40px; 
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+}
+
+.faq-layout {
+    display: flex;
+    justify-content: center; 
+    align-items: flex-start;
+}
+
+.faq-left {
+    width: 100%;
+    max-width: 750px; /* تصغير عرض كروت الأسئلة عشان تطلع ملمومة أكثر */
+    display: flex;
+    flex-direction: column;
+    gap: 15px; 
+}
+
+.faq-item {
+    background-color: #ffffff;
+    border: 1px solid #ececec;
+    border-radius: 16px;
+    padding: 20px 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.02);
+    transition: all 0.35s ease;
+    cursor: pointer;
+}
+
+.faq-question {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #111;
+    margin-bottom: 8px;
+}
+
+.faq-answer {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #ffffff;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.35s ease;
+}
+
+.faq-item:hover {
+    background-color: #c62828;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(198, 40, 40, 0.15);
+    border-color: #c62828;
+}
+
+.faq-item:hover .faq-question {
+    color: #ffffff;
+}
+
+.faq-item:hover .faq-answer {
+    opacity: 1;
+    max-height: 200px;
+    margin-top: 10px;
+}
+
+/* ----------------------------------------- */
+/* RESPONSIVE DESIGN                         */
+/* ----------------------------------------- */
+
+@media (max-width: 992px) {
+    .contact-layout,
+    .form-row {
+        flex-direction: column;
+    }
+
+    .contact-form-box,
+    .contact-info-box,
+    .faq-left {
+        width: 100%;
+    }
+
+    .contact-form-box {
+        max-width: 600px;
+        margin: auto;
+    }
+
+    .contact-top h1,
+    .faq-section h2 {
+        font-size: 2.2rem;
+    }
+
+    .contact-info-box {
+        padding: 10px 0;
+        margin-top: 20px;
+    }
+}
+
+/* 📱 Mobile (576px) */
+@media (max-width: 576px) {
+    .contact-top h1 {
+        font-size: 1.8rem;
+    }
+
+    .contact-form-box {
+        padding: 20px;
+    }
+
+    .form-row {
+        flex-direction: column;
+    }
+
+    .send-btn {
+        width: 100%;
+    }
+}
+
+/* 📱 Tablet (768px) */
+@media (max-width: 768px) {
+    .contact-layout {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .faq-left {
+        max-width: 100%;
+    }
+}
+
+/* إلغاء المسافة العلوية البيضاء للفوتر */
+.main-footer {
+    margin-top: 0;
+}

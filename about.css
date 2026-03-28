@@ -1,0 +1,148 @@
+/* ----------------------------------------- */
+/* ABOUT US PAGE STYLES                      */
+/* ----------------------------------------- */
+
+/* ----------------------------------------- */
+/* عنوان الصفحة العلوي */
+/* ----------------------------------------- */
+.page-title-section {
+    text-align: center;
+    padding: 60px 20px 40px; /* تم التصغير والموازنة مع باقي الموقع */
+    background-color: #ffffff; /* لون رمادي فاتح مريح ومطابق لباقي الصفحات */
+}
+
+.page-title-section h1 {
+    font-size: 2.5rem; 
+    font-weight: 700; 
+    color: #111;
+    margin: 0 0 15px 0;
+    line-height: 1.3;
+}
+
+/* الكلمة الملونة والمائلة في العنوان (نفس البريفيو) */
+.page-title-section h1 span {
+    color: #c62828;
+    font-weight: 600;
+    font-style: italic;
+}
+
+/* الجملة البسيطة تحت العنوان */
+.page-subtitle {
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #666;
+}
+
+.about-block {
+    width: 100%;
+    height: 320px; /* 👈 هنا السر: ثبتنا الطول ليكون أنيق وملموم لكل البلوكات */
+    display: flex;
+    align-items: center; /* يوسط النصوص عامودياً عشان ما تضرب في الحواف */
+    box-sizing: border-box; /* يمنع أي تمدد مخفي أو زيادة في الحجم */
+}
+
+.about-split {
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+    align-items: center; /* هذا السطر يخلي العنوان والنص متوازيين في النص بالضبط */
+}
+
+.about-heading {
+    flex: 0 0 25%;
+}
+
+.about-heading h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.about-content {
+    flex: 1; 
+    max-width: 800px;
+}
+
+.about-content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+.about-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* ----------------------------------------- */
+/*  ألوان وخلفيات الأقسام */
+/* ----------------------------------------- */
+.bg-red {
+    background-color: #c62828;
+    color: #ffffff;
+}
+
+/* قسم الصورة */
+.bg-image {
+    background-image: url('images/aboutBlood.png'); 
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    color: #ffffff;
+}
+
+.bg-image .overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6); 
+}
+
+.relative-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* القسم الأبيض */
+.bg-white {
+    background-color: #ffffff;
+    color: #333;
+    /* مسحنا الـ padding-bottom اللي كان مخليه أقصر من الباقين */
+}
+
+.bg-white .about-heading h2 {
+    color: #c62828;
+}
+/* ========================================= */
+/* إزالة الفراغ قبل الفوتر */
+/* ========================================= */
+.main-footer {
+    margin-top: 0;
+}
+/* ----------------------------------------- */
+/* تنسيق قائمة الأهداف */
+/* ----------------------------------------- */
+.goals-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.goals-list li {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 15px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.goals-list li::before {
+    content: "-";
+    position: absolute;
+    font-weight: bolder;
+    left: 0;
+    color: #c62828;
+}
