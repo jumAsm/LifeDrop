@@ -49,6 +49,7 @@
     background-image: url('images/emergency.jpg');
     background-size: cover;
     background-position: center;
+     background-attachment: fixed;
     padding: 80px 0; /* تصغير المسافة العلوية والسفلية للصورة */
     width: 100%;
     color: #ffffff;
@@ -327,13 +328,26 @@
         text-align: center;
     }
 }
+@media (max-width: 768px) {
 
-@media (max-width: 480px) {
-    .page-title-section h1 {
-        font-size: 2.2rem;
-    }
+.search-split {
+    flex-direction: column;
+}
 
-    .search-heading h2 {
-        font-size: 1.4rem; 
-    }
+.filter-inputs {
+    flex-direction: column;
+}
+
+.donor-card {
+    flex-direction: column;
+}
+
+}
+
+@media (max-width: 576px) {
+
+.search-heading h2 {
+    font-size: 1.8rem;
+}
+
 }
