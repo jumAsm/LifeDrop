@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -24,32 +23,33 @@
         </nav>
     </header>
 
-    <!-- ========== PAGE TITLE ========== -->
     <div class="register-top">
         <h1>Become a Donor<br> <span>save a life today</span></h1>
         <p>Join thousands of heroes who save lives every day. Registration takes less than 2 minutes.</p>
     </div>
 
-    <!-- ========== MAIN REGISTER SECTION ========== -->
     <section class="register-section">
         <div class="container register-layout">
 
-            <!-- FORM BOX -->
             <div class="register-form-box">
                 <h2>Donor Registration</h2>
                 <p class="form-subtitle">Please fill in your details to join LifeDrop as a blood donor.</p>
 
-                <form class="register-form" action="#" method="post">
+                <form class="register-form" action="#" >
+
+                    <p class="form-section-label">Sign In</p>
+
+                    <input type="email" name="email" id="email" placeholder="Enter your email Address" required>
+
+                    <input type="password" name="password" id="password" placeholder="Enter your Password" required>
 
                     <p class="form-section-label">Personal Information</p>
 
                     <div class="form-row">
                         <input type="text" id="firstName" name="firstName" placeholder="First Name"
-                            pattern="[A-Za-z\u0600-\u06FF ]{2,}"
-                            title="Please enter a valid first name (letters only)" required>
+                            pattern="[A-Za-z\u0600-\u06FF ]{2,}" required>
                         <input type="text" id="lastName" name="lastName" placeholder="Last Name"
-                            pattern="[A-Za-z\u0600-\u06FF ]{2,}"
-                            title="Please enter a valid last name (letters only)" required>
+                            pattern="[A-Za-z\u0600-\u06FF ]{2,}" required>
                     </div>
 
                     <div class="form-row">
@@ -62,11 +62,7 @@
                     </div>
 
                     <input type="tel" name="mobile" id="mobile" placeholder="Mobile Number"
-                        pattern="[0-9]{10}" minlength="10" maxlength="10"
-                        title="Please enter a valid 10-digit mobile number" required>
-
-                    <input type="email" name="email" id="email" placeholder="Email Address"
-                        title="Please enter a valid email address" required>
+                        pattern="[0-9]{10}" minlength="10" maxlength="10" required>
 
                     <div class="form-row">
                         <select name="city" id="city" required>
@@ -102,6 +98,7 @@
                         <option value="AB-">AB-</option>
                     </select>
 
+                    <label class="field-label">Last Donation Date <span style="font-weight:400; color:#999;">(if applicable)</span></label>
                     <input type="date" name="lastDonation" id="lastDonation">
 
                     <select name="donationCount" required>
@@ -119,21 +116,6 @@
                         <option value="both">Both</option>
                     </select>
 
-                    <p class="form-section-label">Account</p>
-
-                    <input type="password" name="password" id="password" placeholder="Create Password"
-                        minlength="8" title="Password must be at least 8 characters" required>
-
-                    <input type="password" name="confirmPassword" id="confirmPassword"
-                        placeholder="Confirm Password" required>
-
-                    <div class="checkbox-row">
-                        <input type="checkbox" id="terms" name="terms" required>
-                        <label for="terms">
-                            I agree to the <a href="#">Terms &amp; Conditions</a> and <a href="#">Privacy Policy</a> of LifeDrop.
-                        </label>
-                    </div>
-
                     <div class="checkbox-row">
                         <input type="checkbox" id="updates" name="updates">
                         <label for="updates">
@@ -143,44 +125,37 @@
 
                     <button type="submit" class="register-btn">Complete Registration</button>
 
-                    <p class="login-prompt">Already have an account? <a href="#">Sign In</a></p>
-
                 </form>
             </div>
 
-            <!-- SIDE INFO -->
             <div class="register-info-box">
                 <h2>Why Register with LifeDrop?</h2>
                 <p>Your registration could be the difference between life and death for someone nearby. Here's what you unlock as a verified LifeDrop donor.</p>
 
                 <div class="benefit-card">
-                    <div class="benefit-icon"></div>
                     <div class="benefit-text">
-                        <h4>Save Up to 3 Lives Per Donation</h4>
+                        <h3>Save Up to 3 Lives Per Donation</h3>
                         <p>A single blood donation can be separated into components that help multiple patients in need.</p>
                     </div>
                 </div>
 
                 <div class="benefit-card">
-                    <div class="benefit-icon"></div>
                     <div class="benefit-text">
-                        <h4>Be Found in Emergencies</h4>
+                        <h3>Be Found in Emergencies</h3>
                         <p>Hospitals and patients in your city can find you instantly when every second counts.</p>
                     </div>
                 </div>
 
                 <div class="benefit-card">
-                    <div class="benefit-icon"></div>
                     <div class="benefit-text">
-                        <h4>Urgent Request Alerts</h4>
+                        <h3>Urgent Request Alerts</h3>
                         <p>Get notified when someone with your blood type urgently needs a donor near you.</p>
                     </div>
                 </div>
 
                 <div class="benefit-card">
-                    <div class="benefit-icon"></div>
                     <div class="benefit-text">
-                        <h4>Your Privacy is Protected</h4>
+                        <h3>Your Privacy is Protected</h3>
                         <p>Your personal information is kept secure and only shared with verified medical facilities.</p>
                     </div>
                 </div>
@@ -189,7 +164,6 @@
         </div>
     </section>
 
-    <!-- ========== FOOTER ========== -->
     <footer class="main-footer">
         <div class="footer-container">
             <div class="footer-logo">

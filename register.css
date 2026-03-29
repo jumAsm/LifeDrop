@@ -1,21 +1,17 @@
-/* ----------------------------------------- */
-/* REGISTER TOP SECTION                      */
-/* ----------------------------------------- */
+
 .register-top {
     text-align: center;
-    padding:  0 20px 20px; /* الموازنة وتقليل المساحات الفاضية */
+    padding:  0 20px 20px; 
     background-color: #ffffff;
 }
 
 .register-top h1 {
-    font-size: 2.8rem; /* توحيد حجم العنوان الرئيسي */
+    font-size: 2.8rem; 
     font-weight: 800;
     margin-bottom: 15px;
     color: #111;
-    line-height: 1.3;
 }
 
-/* الكلمة المائلة والملونة لتطابق باقي العناوين */
 .register-top h1 span {
     color: #c62828;
     font-weight: 600;
@@ -30,91 +26,8 @@
     color: #666;
 }
 
-/* ----------------------------------------- */
-/* STEPS INDICATOR                           */
-/* ----------------------------------------- */
-.steps-wrapper {
-    background-color: #fff;
-    padding: 30px 0 0; /* تصغير الفراغ العلوي */
-}
-
-.steps-bar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0;
-    max-width: 600px;
-    margin: 0 auto 30px; /* تصغير الفراغ السفلي */
-}
-
-.step {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-}
-
-.step-circle {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background-color: #f0eee9;
-    border: 2px solid #ddd;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
-    font-weight: 700;
-    color: #999;
-    transition: all 0.3s ease;
-}
-
-.step-label {
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: #aaa;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    white-space: nowrap;
-}
-
-.step.active .step-circle {
-    background-color: #c62828;
-    border-color: #c62828;
-    color: #fff;
-}
-
-.step.active .step-label {
-    color: #c62828;
-}
-
-.step.done .step-circle {
-    background-color: #222;
-    border-color: #222;
-    color: #fff;
-}
-
-.step.done .step-label {
-    color: #222;
-}
-
-.step-line {
-    flex: 1;
-    height: 2px;
-    background-color: #e0e0e0;
-    margin-bottom: 24px;
-    max-width: 80px;
-}
-
-.step-line.done {
-    background-color: #222;
-}
-
-/* ----------------------------------------- */
-/* REGISTER MAIN SECTION                     */
-/* ----------------------------------------- */
 .register-section {
-    padding: 30px 0 50px; /* ترتيب الفراغات لتكون ملمومة */
+    padding: 30px 0 50px; 
     background-color: #ffffff;
 }
 
@@ -123,23 +36,19 @@
     justify-content: space-between;
     gap: 50px;
     align-items: flex-start;
-    max-width: 1100px; /* السر هنا: منع تمدد الفورم في الشاشات الكبيرة */
+    max-width: 1100px; 
     margin: 0 auto;
 }
 
-/* ----------------------------------------- */
-/* FORM BOX                                  */
-/* ----------------------------------------- */
 .register-form-box {
     flex: 1.2;
     background-color: #f5f2ee;
-    padding: 35px 30px; /* تصغير الفراغ الداخلي ليكون أنعم */
-    border-radius: 20px; /* توحيد الحواف */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    padding: 35px 30px; 
+    border-radius: 20px; 
 }
 
 .register-form-box h2 {
-    font-size: 1.8rem; /* توحيد أحجام العناوين */
+    font-size: 1.8rem; 
     color: #111;
     margin-bottom: 8px;
     font-weight: 700;
@@ -163,9 +72,6 @@
     margin-top: 10px;
 }
 
-/* ----------------------------------------- */
-/* FORM INPUTS (توحيد المقاسات)              */
-/* ----------------------------------------- */
 .register-form {
     display: flex;
     flex-direction: column;
@@ -178,14 +84,13 @@
     width: 100%;
 }
 
-/* إجبار الحقول في نفس السطر على نفس العرض */
 .form-row input:not([type="checkbox"]),
 .form-row select {
     flex: 1 1 0;
     min-width: 0;
 }
 
-/* توحيد الارتفاع والحواف لتطابق صفحة البحث والتواصل */
+
 .register-form input:not([type="checkbox"]),
 .register-form select {
     height: 50px;
@@ -199,21 +104,7 @@
     outline: none;
     font-family: inherit;
     box-sizing: border-box;
-    transition: all 0.3s ease;
     margin: 0;
-}
-
-/* تخصيص السهم العصري للقوائم المنسدلة */
-.register-form select {
-    cursor: pointer;
-    padding-right: 10px;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-    background-repeat: no-repeat;
-    background-position: right 20px center;
-    background-size: 15px;
 }
 
 .register-form input::placeholder {
@@ -223,40 +114,16 @@
 .register-form input:not([type="checkbox"]):focus,
 .register-form select:focus {
     border: 2px solid #c62828;
-    box-shadow: 0 4px 12px rgba(198, 40, 40, 0.15);
     transform: translateY(-2px);
 }
 
-/* section label inside form */
 .form-section-label {
     font-size: 0.85rem;
     font-weight: 700;
-    text-transform: uppercase;
     letter-spacing: 1px;
     color: #c62828;
     margin-top: 8px;
     margin-bottom: -4px;
-}
-
-/* blood type grid */
-.blood-type-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-}
-
-.blood-type-btn {
-    background-color: #fff;
-    border: 2px solid #e0e0e0;
-    border-radius: 12px;
-    padding: 14px 10px;
-    font-size: 1rem;
-    font-weight: 700;
-    color: #333;
-    cursor: pointer;
-    transition: all 0.25s ease;
-    text-align: center;
-    font-family: inherit;
 }
 
 .blood-type-btn:hover {
@@ -269,14 +136,8 @@
     background-color: #c62828;
     border-color: #c62828;
     color: #fff;
-    box-shadow: 0 4px 14px rgba(198, 40, 40, 0.3);
 }
 
-#bloodTypeInput {
-    display: none;
-}
-
-/* checkbox agreement */
 .checkbox-row {
     display: flex;
     align-items: flex-start;
@@ -291,22 +152,12 @@
     margin-top: 2px;
     accent-color: #c62828;
     cursor: pointer;
-    padding: 0;
-    border: none;
-    transform: none;
-}
-
-.checkbox-row input[type="checkbox"]:focus {
-    box-shadow: none;
-    transform: none;
-    border: none;
 }
 
 .checkbox-row label {
     font-size: 0.95rem;
     color: #555;
     line-height: 1.5;
-    cursor: pointer;
 }
 
 .checkbox-row label a {
@@ -319,56 +170,30 @@
     text-decoration: underline;
 }
 
-/* ----------------------------------------- */
-/* BUTTONS (تعديل مقاسات الأزرار)            */
-/* ----------------------------------------- */
 .register-btn {
     display: inline-block;
     width: fit-content;
     background-color: #222;
     color: #ffffff;
-    padding: 12px 30px; /* توحيد المقاس */
+    padding: 12px 30px; 
     border: none;
-    border-radius: 50px; /* حواف دائرية بالكامل */
+    border-radius: 50px; 
     text-decoration: none;
     font-size: 0.9rem;
     font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s ease;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
     margin-top: 8px;
 }
 
 .register-btn:hover {
     background-color: #c62828;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(198, 40, 40, 0.2);
 }
 
-.login-prompt {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 0.95rem;
-    color: #777;
-}
-
-.login-prompt a {
-    color: #c62828;
-    font-weight: 600;
-    text-decoration: none;
-}
-
-.login-prompt a:hover {
-    text-decoration: underline;
-}
-/* ----------------------------------------- */
-/* SIDE INFO BOX (Compact & Professional)    */
-/* ----------------------------------------- */
 .register-info-box {
     flex: 0.8;
     display: flex;
     flex-direction: column;
-    gap: 12px; /* تقليل الفراغات عشان ما يطول القسم */
+    gap: 12px; 
     padding-top: 10px;
 }
 
@@ -387,83 +212,73 @@
     margin: 0 0 10px;
 }
 
-/* ----------------------------------------- */
-/* تحويل الكروت إلى قائمة نصوص أنيقة */
-/* ----------------------------------------- */
 .benefit-card {
-    background-color: transparent; /* إزالة الخلفيات المكتومة */
+    background-color: transparent; 
     border-radius: 0;
     padding: 0 0 0 16px;
-    border-left: 3px solid #c62828; /* خط أحمر جانبي يعطي شكل رسمي ومرتب */
+    border-left: 3px solid #c62828; 
     display: flex;
     align-items: flex-start;
     gap: 0;
-    transition: all 0.3s ease;
 }
 
 .benefit-card:hover {
     transform: translateX(5px);
     border-left-width: 5px;
 }
-.benefit-text {
-    flex: 1;
-}
-.benefit-text h4 {
+
+.benefit-text h3 {
     font-size: 1.05rem;
     font-weight: 700;
     color: #222;
     margin: 0 0 6px;
-    letter-spacing: 0.3px; /* 👈 تباعد أحرف خفيف يعطي فخامة وترتيب */
-    transition: color 0.3s ease;
+    letter-spacing: 0.3px; 
 }
 
 .benefit-text p {
-    font-size: 0.95rem; /* تكبير بسيط للوضوح */
+    font-size: 0.95rem; 
     color: #666;
     margin: 0;
-    line-height: 1.6; /* تباعد أسطر أفضل */
+    line-height: 1.6;
 }
 
-/* تلوين العنوان بالأحمر عند الهوفر */
-.benefit-card:hover .benefit-text h4 {
+.benefit-card:hover .benefit-text h3 {
     color: #c62828;
 }
 
-/* ----------------------------------------- */
-/* RESPONSIVE                                */
-/* ----------------------------------------- */
 @media (max-width: 992px) {
     .register-layout {
         flex-direction: column;
     }
-
     .register-form-box,
     .register-info-box {
         width: 100%;
         max-width: 640px;
         margin: 0 auto;
     }
-
     .register-top h1 {
         font-size: 2.2rem;
     }
+}
 
-    .blood-type-grid {
-        grid-template-columns: repeat(4, 1fr);
+@media (max-width: 768px) {
+    .register-form-box,
+    .register-info-box {
+        max-width: 100%;
+    }
+    .register-top h1 {
+        font-size: 2rem;
     }
 }
 
-@media (max-width: 480px) {
-    .blood-type-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-
+@media (max-width: 576px) {
     .form-row {
         flex-direction: column;
     }
+    .register-top h1 {
+        font-size: 1.8rem;
+    }
 }
-
-/* إلغاء المسافة العلوية البيضاء للفوتر */
 .main-footer {
     margin-top: 0;
 }
