@@ -954,7 +954,6 @@ footer-logo {
     margin-bottom: 0;
 }
 
-/* BACKGROUND UTILITIES (COMPONENTS) */
 .bg-red {
     background-color: #c62828;
     color: #ffffff;
@@ -1320,7 +1319,7 @@ footer-logo {
 }
 
 
-/* BACKGROUND (COMPONENTS) */
+/* BACKGROUND */
 .bg-image {
     position: relative;
     background-image: url('images/emergency.jpg');
@@ -1559,7 +1558,7 @@ footer-logo {
 
 /* RESPONSIVE */
 
-/* ===== 1100px ===== */
+/* 1100px */
 @media (max-width: 1100px) {
 
     /* NAV */
@@ -1575,7 +1574,7 @@ footer-logo {
 }
 
 
-/* ===== 992px ===== */
+/* 992px */
 @media (max-width: 992px) {
 
     /* HEADER */
@@ -1761,7 +1760,7 @@ footer-logo {
 }
 
 
-/* ===== 768px ===== */
+/* 768px  */
 @media (max-width: 768px) {
 
     /* CONTACT */
@@ -1793,7 +1792,7 @@ footer-logo {
 }
 
 
-/* ===== 576px ===== */
+/* 576px */
 @media (max-width: 576px) {
 
     /* GLOBAL */
