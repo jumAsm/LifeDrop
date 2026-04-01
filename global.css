@@ -1,7 +1,3 @@
-/* ========================================= */
-/* 1. GLOBAL */
-/* ========================================= */
-
 * {
     box-sizing: border-box;
 }
@@ -20,10 +16,7 @@ body {
     margin: 0 auto;
 }
 
-/* ========================================= */
-/* 2. COMPONENTS (BUTTONS) */
-/* ========================================= */
-
+/* COMPONENTS */
 .btn-main {
     display: inline-block;
     background-color: #c62828;
@@ -75,10 +68,6 @@ body {
 .nav-btn-dark:hover {
     background-color: #c62828;
 }
-
-/* ========================================= */
-/* 3. LAYOUT (HEADER + NAV + FOOTER) */
-/* ========================================= */
 
 .main-header {
     background-color: #ffffff;
@@ -211,11 +200,6 @@ footer-logo {
     margin: 0;
 }
 
-
-/* ========================================= */
-/* 4. SECTIONS */
-/* ========================================= */
-
 /* HERO */
 .hero {
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.1) 50%), url(images/hero.png);
@@ -314,10 +298,7 @@ footer-logo {
     margin-bottom: 15px;
 }
 
-/* ----------------------------------------- */
-/* HOME PAGE SPECIFIC STYLES                 */
-/* ----------------------------------------- */
-
+/* HOME PAGE SPECIFIC STYLES  */
 .hero {
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.1) 50%), url(images/hero.png);
     background-size: cover;
@@ -357,10 +338,7 @@ footer-logo {
     display: flex;
 }
 
-/* ----------------------------------------- */
 /* IMPORTANCE SECTION */
-/* ----------------------------------------- */
-
 .importance {
     padding: 0;
     margin-bottom: 60px;
@@ -447,10 +425,7 @@ footer-logo {
 }
 
 
-/* ----------------------------------------- */
 /* EMERGENCY SECTION */
-/* ----------------------------------------- */
-
 .emergency-section {
     background-color: #c62828;
     color: #ffffff;
@@ -510,10 +485,7 @@ footer-logo {
     font-size: 0.9rem;
 }
 
-/* ----------------------------------------- */
 /* COMPONENT: BUTTON OUTLINE */
-/* ----------------------------------------- */
-
 .btn-outline-white {
     display: inline-block;
     border: 2px solid #ffffff;
@@ -533,10 +505,7 @@ footer-logo {
     color: #c62828;
 }
 
-/* ----------------------------------------- */
 /* ABOUT PREVIEW SECTION */
-/* ----------------------------------------- */
-
 /* SECTION */
 .about-preview {
     padding: 0;
@@ -593,11 +562,8 @@ footer-logo {
     font-style: italic;
 }
 
-/* ----------------------------------------- */
 /* CONTACT PAGE */
-/* ----------------------------------------- */
-
-/* ===== TOP ===== */
+/* TOP */
 .contact-top {
     text-align: center;
     padding: 50px 20px 20px;
@@ -620,13 +586,13 @@ footer-logo {
     color: #666;
 }
 
-/* ===== MAIN SECTION ===== */
+/* MAIN SECTION  */
 .contact-section {
     padding: 30px 0;
     background-color: #ffffff;
 }
 
-/* ===== LAYOUT ===== */
+/* LAYOUT */
 .contact-layout {
     display: flex;
     justify-content: space-between;
@@ -636,7 +602,7 @@ footer-logo {
     margin: 0 auto;
 }
 
-/* ===== BOXES ===== */
+/* BOXES */
 .contact-form-box {
     flex: 1.2;
     background-color: #f5f2ee;
@@ -650,7 +616,7 @@ footer-logo {
     padding: 20px 10px;
 }
 
-/* ===== HEADINGS ===== */
+/* HEADINGS */
 .contact-form-box h2,
 .contact-info-box h2 {
     font-size: 1.8rem;
@@ -674,7 +640,7 @@ footer-logo {
     margin-top: 8px;
 }
 
-/* ===== TEXT ===== */
+/* TEXT  */
 .contact-desc {
     font-size: 1rem;
     line-height: 1.6;
@@ -686,9 +652,7 @@ footer-logo {
     margin-bottom: 10px;
 }
 
-/* ----------------------------------------- */
 /* FORM */
-/* ----------------------------------------- */
 .contact-form {
     display: flex;
     flex-direction: column;
@@ -707,7 +671,7 @@ footer-logo {
     min-width: 0;
 }
 
-/* ===== INPUTS ===== */
+/* INPUTS */
 .contact-form input,
 .contact-form select {
     height: 50px;
@@ -751,7 +715,7 @@ footer-logo {
     border-radius: 20px;
 }
 
-/* ===== FOCUS ===== */
+/* FOCUS */
 .contact-form input:focus,
 .contact-form select:focus,
 .contact-form textarea:focus {
@@ -760,7 +724,7 @@ footer-logo {
     transform: translateY(-2px);
 }
 
-/* ===== BUTTON ===== */
+/* BUTTON */
 .send-btn {
     display: inline-block;
     width: fit-content;
@@ -784,10 +748,7 @@ footer-logo {
     box-shadow: 0 5px 15px rgba(198, 40, 40, 0.2);
 }
 
-/* ----------------------------------------- */
 /* CONTACT INFO */
-/* ----------------------------------------- */
-
 .info-text {
     margin-bottom: 20px;
 }
@@ -821,11 +782,8 @@ footer-logo {
     transform: scale(1.1);
 }
 
-/* ----------------------------------------- */
 /* FAQ SECTION */
-/* ----------------------------------------- */
-
-/* ===== SECTION ===== */
+/* SECTION */
 .faq-section {
     margin-top: 0;
     padding-top: 50px;
@@ -833,7 +791,7 @@ footer-logo {
     background-color: #f5f2ee;
 }
 
-/* ===== HEADER ===== */
+/* HEADER */
 .faq-section h2 {
     text-align: center;
     font-size: 2.2rem;
@@ -859,7 +817,7 @@ footer-logo {
     color: #555;
 }
 
-/* ===== LAYOUT ===== */
+/* LAYOUT */
 .faq-layout {
     display: flex;
     justify-content: center;
@@ -874,7 +832,7 @@ footer-logo {
     gap: 15px;
 }
 
-/* ===== ITEM ===== */
+/* ITEM */
 .faq-item {
     background-color: #ffffff;
     border: 1px solid #ececec;
@@ -902,7 +860,7 @@ footer-logo {
     transition: all 0.35s ease;
 }
 
-/* ===== HOVER ===== */
+/* HOVER */
 .faq-item:hover {
     background-color: #c62828;
     transform: translateY(-3px);
@@ -920,11 +878,9 @@ footer-logo {
     margin-top: 10px;
 }
 
-/* ----------------------------------------- */
 /* ABOUT PAGE */
-/* ----------------------------------------- */
 
-/* ===== HEADER ===== */
+/* HEADER */
 .page-title-section {
     text-align: center;
     padding: 60px 20px 40px;
@@ -953,7 +909,7 @@ footer-logo {
     color: #666;
 }
 
-/* ===== LAYOUT ===== */
+/* LAYOUT */
 .about-block {
     width: 100%;
     height: 320px;
@@ -969,7 +925,7 @@ footer-logo {
     align-items: center;
 }
 
-/* ===== CONTENT ===== */
+/* CONTENT */
 .about-heading {
     flex: 0 0 25%;
 }
@@ -998,10 +954,7 @@ footer-logo {
     margin-bottom: 0;
 }
 
-/* ----------------------------------------- */
 /* BACKGROUND UTILITIES (COMPONENTS) */
-/* ----------------------------------------- */
-
 .bg-red {
     background-color: #c62828;
     color: #ffffff;
@@ -1038,10 +991,7 @@ footer-logo {
     color: #c62828;
 }
 
-/* ----------------------------------------- */
 /* GOALS */
-/* ----------------------------------------- */
-
 .goals-list {
     list-style-type: none;
     padding: 0;
@@ -1064,11 +1014,8 @@ footer-logo {
     color: #c62828;
 }
 
-/* ----------------------------------------- */
 /* REGISTER PAGE */
-/* ----------------------------------------- */
-
-/* ===== TOP ===== */
+/* TOP */
 .register-top {
     text-align: center;
     padding: 0 20px 20px;
@@ -1096,13 +1043,13 @@ footer-logo {
     color: #666;
 }
 
-/* ===== SECTION ===== */
+/* SECTION */
 .register-section {
     padding: 30px 0 50px;
     background-color: #ffffff;
 }
 
-/* ===== LAYOUT ===== */
+/* LAYOUT */
 .register-layout {
     display: flex;
     justify-content: space-between;
@@ -1112,7 +1059,7 @@ footer-logo {
     margin: 0 auto;
 }
 
-/* ===== FORM BOX ===== */
+/* FORM BOX */
 .register-form-box {
     flex: 1.2;
     background-color: #f5f2ee;
@@ -1145,7 +1092,7 @@ footer-logo {
     margin-top: 10px;
 }
 
-/* ===== FORM ===== */
+/*  FORM  */
 .register-form {
     display: flex;
     flex-direction: column;
@@ -1190,7 +1137,7 @@ footer-logo {
     transform: translateY(-2px);
 }
 
-/* ===== LABEL ===== */
+/*  LABEL  */
 .form-section-label {
     font-size: 0.85rem;
     font-weight: 700;
@@ -1200,7 +1147,7 @@ footer-logo {
     margin-bottom: -4px;
 }
 
-/* ===== OPTIONS ===== */
+/*  OPTIONS  */
 .blood-type-btn:hover {
     border-color: #c62828;
     color: #c62828;
@@ -1213,7 +1160,7 @@ footer-logo {
     color: #fff;
 }
 
-/* ===== CHECKBOX ===== */
+/*  CHECKBOX  */
 .checkbox-row {
     display: flex;
     align-items: flex-start;
@@ -1246,7 +1193,7 @@ footer-logo {
     text-decoration: underline;
 }
 
-/* ===== BUTTON ===== */
+/*  BUTTON  */
 .register-btn {
     display: inline-block;
     width: fit-content;
@@ -1266,7 +1213,7 @@ footer-logo {
     transform: translateY(-2px);
 }
 
-/* ===== INFO BOX ===== */
+/*  INFO BOX  */
 .register-info-box {
     flex: 0.8;
     display: flex;
@@ -1283,14 +1230,14 @@ footer-logo {
     margin: 0;
 }
 
-.register-info-box > p {
+.register-info-box>p {
     font-size: 1rem;
     color: #666;
     line-height: 1.6;
     margin: 0 0 10px;
 }
 
-/* ===== BENEFITS ===== */
+/* BENEFITS */
 .benefit-card {
     background-color: transparent;
     border-radius: 0;
@@ -1325,11 +1272,10 @@ footer-logo {
     color: #c62828;
 }
 
-/* ========================================= */
-/* SEARCH PAGE */
-/* ========================================= */
 
-/* ===== HEADER ===== */
+/* SEARCH PAGE */
+
+/* HEADER */
 .page-title-section {
     text-align: center;
     padding: 60px 20px 30px;
@@ -1343,13 +1289,13 @@ footer-logo {
     margin-bottom: 15px;
 }
 
-/* ===== MAIN ===== */
+/*  MAIN  */
 .search-block {
     padding: 60px 0;
     width: 100%;
 }
 
-/* ===== LAYOUT ===== */
+/* LAYOUT */
 .search-split {
     display: flex;
     justify-content: space-between;
@@ -1373,10 +1319,8 @@ footer-logo {
     max-width: 800px;
 }
 
-/* ----------------------------------------- */
-/* BACKGROUND (COMPONENTS) */
-/* ----------------------------------------- */
 
+/* BACKGROUND (COMPONENTS) */
 .bg-image {
     position: relative;
     background-image: url('images/emergency.jpg');
@@ -1416,10 +1360,7 @@ footer-logo {
     color: #c62828;
 }
 
-/* ----------------------------------------- */
 /* FILTER */
-/* ----------------------------------------- */
-
 .filter-inputs {
     display: flex;
     gap: 15px;
@@ -1430,10 +1371,8 @@ footer-logo {
     flex: 1;
     padding: 12px 45px 12px 20px;
     border-radius: 50px;
-
     border: 2px solid transparent;
     transition: all 0.3s ease;
-
     font-size: 0.95rem;
     color: #333;
     outline: none;
@@ -1443,9 +1382,7 @@ footer-logo {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-
     background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-
     background-repeat: no-repeat;
     background-position: right 20px center;
     background-size: 15px;
@@ -1457,10 +1394,7 @@ footer-logo {
     transform: translateY(-2px);
 }
 
-/* ----------------------------------------- */
 /* BUTTON */
-/* ----------------------------------------- */
-
 .btn-outline-white {
     display: inline-block;
     border: 2px solid #ffffff;
@@ -1481,10 +1415,7 @@ footer-logo {
     transform: translateY(-2px);
 }
 
-/* ----------------------------------------- */
 /* RESULTS */
-/* ----------------------------------------- */
-
 .results-meta {
     margin-bottom: 20px;
     font-size: 1.05rem;
@@ -1511,9 +1442,8 @@ footer-logo {
     font-style: italic;
 }
 
-/* ----------------------------------------- */
+
 /* DONOR CARD */
-/* ----------------------------------------- */
 
 /* CARD */
 .donor-card {
@@ -1626,9 +1556,8 @@ footer-logo {
     color: #c62828;
 }
 
-/* ========================================= */
+
 /* RESPONSIVE */
-/* ========================================= */
 
 /* ===== 1100px ===== */
 @media (max-width: 1100px) {
@@ -1755,7 +1684,7 @@ footer-logo {
         margin-top: 20px;
     }
 
-    /* ABOUT PAGE */
+    /* ABOUT */
     .about-block {
         height: auto;
         padding: 60px 0;
