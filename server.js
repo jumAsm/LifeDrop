@@ -107,3 +107,15 @@ const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`server on: http://localhost:${PORT}`);
 });
+
+signInForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const email    = document.getElementById("siEmail");
+    const password = document.getElementById("siPassword");
+    const v1 = validateEmail(email);
+    const v2 = validatePassword(password);
+    if (v1 && v2) {
+        localStorage.setItem("userName", email.value.split("@")[0]);
+        window.location.href = "index.html";
+    }
+});

@@ -1142,8 +1142,8 @@ footer-logo {
     font-weight: 700;
     letter-spacing: 1px;
     color: #c62828;
-    margin-top: 8px;
-    margin-bottom: -4px;
+    margin-top: 0;
+    margin-bottom: 8px;
 }
 
 /*  OPTIONS  */
@@ -1271,7 +1271,150 @@ footer-logo {
     color: #c62828;
 }
 
+/*AUTH TOGGLE*/
+.auth-toggle {
+    display: flex;
+    background-color: #e8e4df;
+    border-radius: 50px;
+    padding: 5px;
+    gap: 4px;
+    margin-bottom: 24px;
+}
+ 
+.toggle-btn {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 50px;
+    background-color: transparent;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #777;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+ 
+.toggle-btn.active {
+    background-color: #ffffff;
+    color: #111;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+ 
+/*STEPS BAR*/
+.steps-bar {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    margin-bottom: 28px;
+    margin-top: 24px;
+    gap: 0;
+    width: 100%;
+}
 
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+ 
+.step-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #e8e4df;
+    border: 2px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #999;
+    transition: all 0.3s ease;
+}
+ 
+.step-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+ 
+.step.active .step-circle {
+    background-color: #c62828;
+    border-color: #c62828;
+    color: #fff;
+}
+ 
+.step.active .step-label {
+    color: #c62828;
+}
+ 
+.step.done .step-circle {
+    background-color: #222;
+    border-color: #222;
+    color: #fff;
+}
+ 
+.step.done .step-label {
+    color: #222;
+}
+ 
+.step-line {
+    flex: 1;
+    height: 2px;
+    background-color: #e0e0e0;
+    margin-top: 20px;
+    max-width: 80px;
+    transition: background-color 0.3s ease;
+}
+ 
+.step-line.done {
+    background-color: #222;
+}
+ 
+#signInForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/*BACK BUTTON*/
+.btn-back {
+    background-color: #e8e4df;
+    color: #333;
+    box-shadow: none;
+}
+ 
+.btn-back:hover {
+    background-color: #d0ccc7;
+    transform: translateY(-2px);
+}
+
+/*VALIDATION MESSAGES*/
+.error-msg {
+    display: block;
+    color: #c62828;
+    font-size: 0.82rem;
+    margin-top: -8px;
+    margin-bottom: -4px;
+    padding-left: 12px;
+}
+ 
+.success-msg {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #a5d6a7;
+    border-radius: 12px;
+    padding: 16px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 20px;
+    text-align: center;
+}
 /* SEARCH PAGE */
 
 /* HEADER */

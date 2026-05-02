@@ -2,10 +2,9 @@
 <html lang="en" dir="ltr">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LifeDrop - Become a Donor</title>
     <link rel="stylesheet" href="global.css">
-
+    <link rel="stylesheet" href="register.css">
 </head>
 <body>
 
@@ -15,7 +14,7 @@
         </div>
         <nav class="nav-wrapper">
             <ul class="nav-links">
-                <li><a href="home.html">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="search.html">Find a Donor</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="contact.html">Contact Us</a></li>
@@ -36,128 +35,172 @@
                 <h2>Donor Registration</h2>
                 <p class="form-subtitle">Please fill in your details to join LifeDrop as a blood donor.</p>
 
-                <form class="register-form" action="/register" method="POST">
+                <!-- ===== TOGGLE SIGN IN / SIGN UP ===== -->
+                <div class="auth-toggle">
+                    <button type="button" class="toggle-btn active" id="btnSignIn">Sign In</button>
+                    <button type="button" class="toggle-btn" id="btnSignUp">Sign Up</button>
+                </div>
 
+                <!-- ===== SIGN IN FORM ===== -->
+                <form class="register-form" id="signInForm" action="#" method="post">
                     <p class="form-section-label">Sign In</p>
-
-                    <input type="email" name="email" id="email" placeholder="Enter your email Address" required>
-
-                    <input type="password" name="password" id="password" placeholder="Enter your Password" required>
-
-                    <p class="form-section-label">Personal Information</p>
-
-                    <div class="form-row">
-                        <input type="text" id="firstName" name="firstName" placeholder="First Name"
-                            pattern="[A-Za-z\u0600-\u06FF ]{2,}" required>
-                        <input type="text" id="lastName" name="lastName" placeholder="Last Name"
-                            pattern="[A-Za-z\u0600-\u06FF ]{2,}" required>
-                    </div>
-
-                    <div class="form-row">
-                        <select name="gender" id="gender" required>
-                            <option value="">Select Gender</option>
-                            <option value="Female">Female</option>
-                            <option value="Male">Male</option>
-                        </select>
-                        <input type="date" name="dob" id="dob" required>
-                    </div>
-
-                    <input type="tel" name="mobile" id="mobile" placeholder="Mobile Number"
-                        pattern="[0-9]{10}" minlength="10" maxlength="10" required>
-
-                    <div class="form-row">
-                        <select name="city" id="city" required>
-                            <option value="">Select City</option>
-                            <option value="Riyadh">Riyadh</option>
-                            <option value="Jeddah">Jeddah</option>
-                            <option value="Mecca">Mecca</option>
-                            <option value="Medina">Medina</option>
-                            <option value="Dammam">Dammam</option>
-                            <option value="Khobar">Khobar</option>
-                            <option value="Taif">Taif</option>
-                            <option value="Tabuk">Tabuk</option>
-                            <option value="Other">Other</option>
-                        </select>
-                        <select name="nationality" id="nationality" required>
-                            <option value="">Nationality</option>
-                            <option value="Saudi">Saudi</option>
-                            <option value="Non-Saudi">Non-Saudi</option>
-                        </select>
-                    </div>
-
-                    <p class="form-section-label">Medical Information</p>
-
-                    <select name="bloodType" required>
-                        <option value="">Select Blood Type</option>
-                        <option value="A+">A+</option>
-                        <option value="A-">A-</option>
-                        <option value="B+">B+</option>
-                        <option value="B-">B-</option>
-                        <option value="O+">O+</option>
-                        <option value="O-">O-</option>
-                        <option value="AB+">AB+</option>
-                        <option value="AB-">AB-</option>
-                    </select>
-
-                    <label class="field-label">Last Donation Date <span style="font-weight:400; color:#999;">(if applicable)</span></label>
-                    <input type="date" name="lastDonation" id="lastDonation">
-
-                    <select name="donationCount" required>
-                        <option value="">How many times have you donated before?</option>
-                        <option value="0">Never - this is my first time</option>
-                        <option value="1-5">1 - 5 times</option>
-                        <option value="6-10">6 - 10 times</option>
-                        <option value="11+">More than 10 times</option>
-                    </select>
-
-                    <select name="availability" required>
-                        <option value="">Availability for Donation</option>
-                        <option value="urgent">Available for Urgent Cases</option>
-                        <option value="scheduled">Scheduled Donation Only</option>
-                        <option value="both">Both</option>
-                    </select>
-
-                    <div class="checkbox-row">
-                        <input type="checkbox" id="updates" name="updates">
-                        <label for="updates">
-                            I would like to receive email notifications about urgent donation requests near me.
-                        </label>
-                    </div>
-
-                    <button type="submit" class="register-btn">Complete Registration</button>
-
+                    <input type="email" name="email" id="siEmail" placeholder="Email Address" required>
+                    <input type="password" name="password" id="siPassword" placeholder="Password" required>
+                    <button type="submit" class="register-btn">Sign In</button>
                 </form>
+
+                <!-- ===== SIGN UP FORM (3 steps) ===== -->
+                <div id="signUpForm" style="display:none;">
+
+                    <!-- Steps Bar -->
+                    <div class="steps-bar">
+                        <div class="step active" id="s1">
+                            <div class="step-circle">1</div>
+                            <span class="step-label">Account</span>
+                        </div>
+                        <div class="step-line" id="line1"></div>
+                        <div class="step" id="s2">
+                            <div class="step-circle">2</div>
+                            <span class="step-label">Personal Info</span>
+                        </div>
+                        <div class="step-line" id="line2"></div>
+                        <div class="step" id="s3">
+                            <div class="step-circle">3</div>
+                            <span class="step-label">Medical Info</span>
+                        </div>
+                    </div>
+
+                    <!-- Step 1: Account -->
+                    <div id="step1">
+                        <p class="form-section-label">Account</p>
+                        <div class="register-form">
+                            <input type="email" id="email" placeholder="Email Address" required>
+                            <input type="password" id="password" placeholder="Create Password" required>
+                            <button type="button" class="register-btn" id="nextStep1">Next</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Personal Info -->
+                    <div id="step2" style="display:none;">
+                        <p class="form-section-label">Personal Information</p>
+                        <div class="register-form">
+                            <div class="form-row">
+                                <input type="text" id="firstName" placeholder="First Name" required>
+                                <input type="text" id="lastName" placeholder="Last Name" required>
+                            </div>
+                            <div class="form-row">
+                                <select id="gender" required>
+                                    <option value="">Select Gender</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Male">Male</option>
+                                </select>
+                                <input type="date" id="dob" required>
+                            </div>
+                            <input type="tel" id="mobile" placeholder="Mobile Number" maxlength="10" required>
+                            <div class="form-row">
+                                <select id="city" required>
+                                    <option value="">Select City</option>
+                                    <option value="Riyadh">Riyadh</option>
+                                    <option value="Jeddah">Jeddah</option>
+                                    <option value="Mecca">Mecca</option>
+                                    <option value="Medina">Medina</option>
+                                    <option value="Dammam">Dammam</option>
+                                    <option value="Khobar">Khobar</option>
+                                    <option value="Taif">Taif</option>
+                                    <option value="Tabuk">Tabuk</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                                <select id="nationality" required>
+                                    <option value="">Nationality</option>
+                                    <option value="Saudi">Saudi</option>
+                                    <option value="Non-Saudi">Non-Saudi</option>
+                                </select>
+                            </div>
+                            <div style="display:flex; gap:12px;">
+                                <button type="button" class="register-btn btn-back" id="backStep2"> Back</button>
+                                <button type="button" class="register-btn" id="nextStep2">Next </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Medical Info -->
+                    <div id="step3" style="display:none;">
+                        <p class="form-section-label">Medical Information</p>
+                        <div class="register-form">
+                            <select id="bloodType" required>
+                                <option value="">Select Blood Type</option>
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                            </select>
+                            <label class="field-label">Last Donation Date <span style="font-weight:400;color:#999;">(if applicable)</span></label>
+                            <input type="date" id="lastDonation">
+                            <select id="donationCount" required>
+                                <option value="">How many times have you donated before?</option>
+                                <option value="0">Never - this is my first time</option>
+                                <option value="1-5">1 - 5 times</option>
+                                <option value="6-10">6 - 10 times</option>
+                                <option value="11+">More than 10 times</option>
+                            </select>
+                            <select id="availability" required>
+                                <option value="">Availability for Donation</option>
+                                <option value="urgent">Available for Urgent Cases</option>
+                                <option value="scheduled">Scheduled Donation Only</option>
+                                <option value="both">Both</option>
+                            </select>
+                            <div class="checkbox-row">
+                                <input type="checkbox" id="updates" name="updates">
+                                <label for="updates">I would like to receive email notifications about urgent donation requests near me.</label>
+                            </div>
+                            <div style="display:flex; gap:12px;">
+                                <button type="button" class="register-btn btn-back" id="backStep3">Back</button>
+                                <button type="button" class="register-btn" id="submitSignUp">Complete Registration</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Success Message -->
+                    <div id="successMsg" style="display:none; text-align:center; padding:30px 0;">
+                        <div style="font-size:3rem; margin-bottom:12px;">🩸</div>
+                        <h3 style="color:#c62828; margin-bottom:8px;">You're a Hero!</h3>
+                        <p style="color:#555;">Thank you for registering. Your profile is now live on LifeDrop.</p>
+                        <a href="index.html" class="register-btn" style="margin-top:16px; display:inline-block;">Back to Home</a>
+                    </div>
+
+                </div>
             </div>
 
+            <!-- SIDE INFO -->
             <div class="register-info-box">
                 <h2>Why Register with LifeDrop?</h2>
-                <p>Your registration could be the difference between life and death for someone nearby. Here's what you unlock as a verified LifeDrop donor.</p>
-
+                <p>Your registration could be the difference between life and death for someone nearby.</p>
                 <div class="benefit-card">
                     <div class="benefit-text">
                         <h3>Save Up to 3 Lives Per Donation</h3>
-                        <p>A single blood donation can be separated into components that help multiple patients in need.</p>
+                        <p>A single donation can be separated into components that help multiple patients.</p>
                     </div>
                 </div>
-
                 <div class="benefit-card">
                     <div class="benefit-text">
                         <h3>Be Found in Emergencies</h3>
                         <p>Hospitals and patients in your city can find you instantly when every second counts.</p>
                     </div>
                 </div>
-
                 <div class="benefit-card">
                     <div class="benefit-text">
                         <h3>Urgent Request Alerts</h3>
                         <p>Get notified when someone with your blood type urgently needs a donor near you.</p>
                     </div>
                 </div>
-
                 <div class="benefit-card">
                     <div class="benefit-text">
                         <h3>Your Privacy is Protected</h3>
-                        <p>Your personal information is kept secure and only shared with verified medical facilities.</p>
+                        <p>Your information is kept secure and only shared with verified medical facilities.</p>
                     </div>
                 </div>
             </div>
@@ -185,5 +228,6 @@
         </div>
     </footer>
 
+    <script src="register.js"></script>
 </body>
 </html>
