@@ -1,59 +1,58 @@
-// REGISTER PAGE - UNIFIED COMPREHENSIVE LOGIC (CCSW 321)[cite: 7]
 document.addEventListener("DOMContentLoaded", function () {
-
-    // --- 1. Global Variables ---
+//Global Variables 
     const btnSignIn = document.getElementById("btnSignIn");
     const btnSignUp = document.getElementById("btnSignUp");
     const signInForm = document.getElementById("signInForm");
     const signUpForm = document.getElementById("signUpForm");
     let currentStep = 1;
 
-    // --- 2. Helper Validation Functions (Unified Style) ---
+
     
-    // Displays red text under the field and adds red border
+
+//Validation Functions    
+//Function to add red error text and border style 
     function showError(input, message) {
         clearError(input);
         if (!input) return;
-        input.classList.add("input-error"); 
+        input.classList.add("input-error");
         const err = document.createElement("span");
-        err.className = "error-msg";
+        err.className = "error-msg"; 
         err.textContent = message;
         input.insertAdjacentElement("afterend", err);
     }
-
-    // Removes error styles and messages[cite: 12]
+//Function to remove error styles and elements
     function clearError(input) {
         if (!input) return;
         input.classList.remove("input-error");
         const next = input.nextElementSibling;
         if (next && next.classList.contains("error-msg")) next.remove();
     }
-
+//Email validation 
     function validateEmail(input) {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!input.value.trim()) { showError(input, "Email is required."); return false; }
         if (!re.test(input.value.trim())) { showError(input, "Invalid email format."); return false; }
         clearError(input); return true;
     }
-
+//Password length validation
     function validatePassword(input) {
         if (!input.value) { showError(input, "Password is required."); return false; }
         if (input.value.length < 8) { showError(input, "Must be at least 8 characters."); return false; }
         clearError(input); return true;
     }
-
+//Basic validation for text and select fields
     function validateRequired(input, message) {
         if (input.value.trim().length < 1) { showError(input, message); return false; }
         clearError(input); return true;
     }
-
+//Mobile number validation
     function validateMobile(input) {
         const re = /^[0-9]{10}$/;
         if (!re.test(input.value.trim())) { showError(input, "Mobile must be 10 digits."); return false; }
         clearError(input); return true;
     }
 
-    // --- 3. Multi-Step Navigation Logic ---[cite: 7]
+//Sign Up Steps 
     function goToStep(step) {
         const currentDiv = document.getElementById("step" + currentStep);
         const nextDiv = document.getElementById("step" + step);
@@ -63,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
         currentStep = step;
         window.scrollTo({ top: 200, behavior: "smooth" });
     }
-
+//Progress bar update
     function updateStepsBar(active) {
         for (let i = 1; i <= 3; i++) {
             const s = document.getElementById("s" + i);
@@ -75,9 +74,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // --- 4. Event Handlers ---[cite: 12]
 
-    // Form Toggle Logic[cite: 7]
+
+
+//Event Handlers 
+//Form Toggle between Sign IN or Sign UP
     if (btnSignIn && btnSignUp) {
         btnSignIn.addEventListener("click", function () {
             btnSignIn.classList.add("active"); btnSignUp.classList.remove("active");
@@ -89,25 +90,27 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Step-by-Step Sign Up Validation[cite: 12]
+//Sign Up - Step 1 Verification
     document.getElementById("nextStep1")?.addEventListener("click", () => {
         const emailField = document.getElementById("email");
         const passField = document.getElementById("password");
         if (validateEmail(emailField) && validatePassword(passField)) goToStep(2);
     });
 
+//Sign Up - Step 2 Verification
     document.getElementById("nextStep2")?.addEventListener("click", () => {
         const isFnameOk = validateRequired(document.getElementById("firstName"), "First name required.");
         const isLnameOk = validateRequired(document.getElementById("lastName"), "Last name required.");
         const isMobileOk = validateMobile(document.getElementById("mobile"));
-        const isCityOk = validateRequired(document.getElementById("city"), "City required.");
+        const isCityOk = validateRequired(document.getElementById("city"), "City selection required.");
         if (isFnameOk && isLnameOk && isMobileOk && isCityOk) goToStep(3);
     });
 
+// Back Navigation
     document.getElementById("backStep2")?.addEventListener("click", () => goToStep(1));
     document.getElementById("backStep3")?.addEventListener("click", () => goToStep(2));
 
-    // Global Enter Key Handler for both forms[cite: 12]
+//Enter Key Handler
     document.addEventListener("keydown", function (e) {
         if (e.key === "Enter" && e.target.tagName !== "TEXTAREA") {
             if (signUpForm && signUpForm.style.display !== "none") {
@@ -123,9 +126,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // --- 5. Backend Communication (AJAX) ---[cite: 11]
 
-    // Sign Up Submission[cite: 11]
+
+
+//Backend Communication AJAX - Fetch
+//Sign Up Submission
     document.getElementById("submitSignUp")?.addEventListener("click", function () {
         const blood = document.getElementById("bloodType");
         if (validateRequired(blood, "Blood type selection required.")) {
@@ -163,14 +168,12 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Unified Sign In Logic[cite: 11, 12]
+ //Sign In Submission
     signInForm?.addEventListener("submit", function (e) {
-        e.preventDefault(); // Prevents the browser's default "required" popup[cite: 12]
-        
+        e.preventDefault(); 
         const em = document.getElementById("siEmail");
         const ps = document.getElementById("siPassword");
-
-        // Now uses the same error handling style as Sign Up[cite: 12]
+//Validation 
         const isEmailOk = validateEmail(em);
         const isPassOk = validatePassword(ps);
 
@@ -187,30 +190,35 @@ document.addEventListener("DOMContentLoaded", function () {
                     window.location.href = "index.html";
                 } else { alert("Login Failed: " + data.message); }
             })
-            .catch(err => alert("Server offline."));
+            .catch(err => alert("Server offline. Check Terminal."));
         }
     });
 
+//Clear validation 
     document.querySelectorAll("input, select").forEach(el => {
         el.addEventListener("input", () => clearError(el));
     });
-});
 
-// --- 6. Navigation Bar Avatar Logic ---[cite: 12]
-(function updateNavigation() {
+    //Avatar Update
+(function updateAvatar() {
     const savedName = localStorage.getItem("userName");
     if (savedName) {
         const navBtn = document.querySelector(".nav-btn-dark");
         const navWrapper = document.querySelector(".nav-wrapper");
         if (navBtn && navWrapper) {
             navBtn.style.display = "none";
-            const avatar = document.createElement("div");
+            const avatar = document.createElement("div"); 
             avatar.className = "user-avatar";
             avatar.textContent = savedName.charAt(0).toUpperCase();
             navWrapper.appendChild(avatar);
+            
             avatar.onclick = () => {
-                if (confirm("Log out?")) { localStorage.removeItem("userName"); window.location.reload(); }
+                if (confirm("Log out?")) { 
+                    localStorage.removeItem("userName"); 
+                    window.location.reload(); 
+                }
             };
         }
     }
 })();
+});
