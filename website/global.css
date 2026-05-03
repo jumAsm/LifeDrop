@@ -1697,10 +1697,45 @@ footer-logo {
     background-color: #ffffff;
     color: #c62828;
 }
+/*Avatar*/
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    background-color: #c62828;
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer;
+    border: 2px solid #f0eee9;
+    transition: 0.3s;
+}
+
+.user-avatar:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(198, 40, 40, 0.3);
+}
+
+
+/*Form Errors*/
+.input-error {
+    border: 2px solid #c62828 !important; 
+    background-color: #fff8f8; 
+}
+.error-msg {
+    color: #c62828;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-top: 4px;
+    display: block;
+    padding-left: 15px;
+}
+
 
 
 /* RESPONSIVE */
-
 /* 1100px */
 @media (max-width: 1100px) {
 
@@ -1999,3 +2034,4 @@ footer-logo {
         text-align: center;
     }
 }
+
