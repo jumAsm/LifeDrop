@@ -156,8 +156,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-    //Backend Communication AJAX - Fetch
-    //Sign Up Submission
+//Backend Communication AJAX - Fetch
+//Sign Up Submission
     document.getElementById("submitSignUp")?.addEventListener("click", function () {
         const blood = document.getElementById("bloodType");
         if (validateRequired(blood, "Blood type selection required.")) {

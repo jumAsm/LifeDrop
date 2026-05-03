@@ -87,7 +87,6 @@ app.post("/register", [
 //Route to handle Log In form submissions
 app.post("/login", (req, res) => {
     const { email, password } = req.body;
-
     const checkEmailSql = "SELECT * FROM donors WHERE LOWER(email) = LOWER(?)";
 
     db.query(checkEmailSql, [email], (err, results) => {
@@ -102,13 +101,25 @@ app.post("/login", (req, res) => {
                 message: "This email is not registered. Please create an account first." 
             });
         }
-
         const user = results[0];
         if (user.password === password) {
             res.json({ success: true, firstName: user.first_name });
         } else {
             res.json({ success: false, message: "Incorrect password. Please try again." });
         }
+    });
+});
+
+//Route to handle Accounts 
+app.post("/check-email", (req, res) => {
+    const { email } = req.body;
+    const sql = "SELECT * FROM donors WHERE LOWER(email) = LOWER(?)";
+    db.query(sql, [email], (err, results) => {
+        if (err) {
+            console.error("Database error:", err);
+            return res.status(500).json({ error: "Internal error" });
+        }
+        res.json({ exists: results.length > 0 });
     });
 });
 
@@ -164,17 +175,7 @@ app.get("/search-donors", (req, res) => {
         res.json(results);
     });
 });
-app.post("/check-email", (req, res) => {
-    const { email } = req.body;
-    const sql = "SELECT * FROM donors WHERE LOWER(email) = LOWER(?)";
-    db.query(sql, [email], (err, results) => {
-        if (err) {
-            console.error("Database error:", err);
-            return res.status(500).json({ error: "Internal error" });
-        }
-        res.json({ exists: results.length > 0 });
-    });
-});
+
 
 
 const PORT = 4000;
