@@ -24,14 +24,16 @@ db.connect(function (err) {
 });
 
 
-//Route to handle Register form submissions
+//Route to handle Sign Up form submissions
 app.post("/register", [
     check("firstName").trim().notEmpty().withMessage("First name is required").escape(),
     check("lastName").trim().notEmpty().withMessage("Last name is required").escape(),
     check("email").isEmail().withMessage("Invalid email format").normalizeEmail().escape(),
-    check("password").isLength({ min: 8 }).withMessage("Password must be 8+ chars").escape(),
-    check("mobile").isLength({ min: 10, max: 10 }).isNumeric().escape()
+    check("password").isLength({ min: 8 }).withMessage("Password must be 8+ characters").escape(),
+    check("mobile").isLength({ min: 10, max: 10 }).isNumeric().withMessage("Mobile must be 10 digits").escape(),
+    check("bloodType").notEmpty().withMessage("Blood type is required").escape()
 ], (req, res) => {
+    
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ success: false, errors: errors.array() });
@@ -43,42 +45,69 @@ app.post("/register", [
         lastDonation, donationCount, availability
     } = req.body;
 
-    const sql = `INSERT INTO donors 
-        (email, password, first_name, last_name, gender, dob, mobile, city, nationality, blood_type, last_donation, donation_count, availability) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
-
-    const values = [
-        email, password, firstName, lastName, gender,
-        dob, mobile, city, nationality, bloodType,
-        lastDonation || null, donationCount, availability
-    ];
-
-    db.query(sql, values, (err, result) => {
+  const checkEmailSql = "SELECT * FROM donors WHERE LOWER(email) = LOWER(?)";    
+    db.query(checkEmailSql, [email], (err, results) => {
         if (err) {
-            console.error("Error saving data: ", err);
-            return res.status(500).json({ success: false, message: "Database error" });
+            console.error("Database Check Error:", err);
+            return res.status(500).json({ success: false, message: "Internal server error" });
         }
-        res.json({ success: true, message: "New donor added successfully!" });
+
+        if (results.length > 0) {
+            return res.json({ 
+                success: false, 
+                message: "This email is already registered. Please Sign In instead." 
+            });
+        }
+
+        const sql = `INSERT INTO donors 
+            (email, password, first_name, last_name, gender, dob, mobile, city, nationality, blood_type, last_donation, donation_count, availability) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+
+        const values = [
+            email, password, firstName, lastName, gender,
+            dob, mobile, city, nationality, bloodType,
+            lastDonation || null, donationCount, availability
+        ];
+
+        db.query(sql, values, (err, result) => {
+            if (err) {
+                console.error("Error saving to database:", err);
+                return res.status(500).json({ success: false, message: "Database insertion failed" });
+            }
+            
+            res.json({ 
+                success: true, 
+                message: "New hero registered successfully!", 
+                firstName: firstName 
+            });
+        });
     });
 });
 
-//Route to handle Register form submissions
+//Route to handle Log In form submissions
 app.post("/login", (req, res) => {
     const { email, password } = req.body;
-    console.log("Login attempt for:", email);
-    const sql = "SELECT * FROM donors WHERE email = ? AND password = ?";
 
-    db.query(sql, [email, password], (err, results) => {
+    const checkEmailSql = "SELECT * FROM donors WHERE LOWER(email) = LOWER(?)";
+
+    db.query(checkEmailSql, [email], (err, results) => {
         if (err) {
             console.error("Database Login Error:", err);
             return res.status(500).json({ success: false, message: "Internal Database Error" });
         }
 
-        if (results.length > 0) {
-            console.log("User found:", results[0].first_name);
-            res.json({ success: true, firstName: results[0].first_name });
+        if (results.length === 0) {
+            return res.json({ 
+                success: false, 
+                message: "This email is not registered. Please create an account first." 
+            });
+        }
+
+        const user = results[0];
+        if (user.password === password) {
+            res.json({ success: true, firstName: user.first_name });
         } else {
-            res.json({ success: false, message: "Invalid email or password" });
+            res.json({ success: false, message: "Incorrect password. Please try again." });
         }
     });
 });
@@ -135,8 +164,20 @@ app.get("/search-donors", (req, res) => {
         res.json(results);
     });
 });
+app.post("/check-email", (req, res) => {
+    const { email } = req.body;
+    const sql = "SELECT * FROM donors WHERE LOWER(email) = LOWER(?)";
+    db.query(sql, [email], (err, results) => {
+        if (err) {
+            console.error("Database error:", err);
+            return res.status(500).json({ error: "Internal error" });
+        }
+        res.json({ exists: results.length > 0 });
+    });
+});
 
-const PORT = 3000;
+
+const PORT = 4000;
 app.listen(PORT, () => {
     console.log(`server on: http://localhost:${PORT}`);
 });

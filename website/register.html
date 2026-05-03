@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
     <meta charset="utf-8">
     <title>LifeDrop - Become a Donor</title>
     <link rel="stylesheet" href="global.css">
 </head>
+
 <body>
 
     <header class="main-header">
@@ -41,8 +43,8 @@
 
                 <form class="register-form" id="signInForm" action="#" method="post">
                     <p class="form-section-label">Sign In</p>
-                    <input type="email" name="email" id="siEmail" placeholder="Email Address" >
-                    <input type="password" name="password" id="siPassword" placeholder="Password" >
+                    <input type="email" name="email" id="siEmail" placeholder="Email Address">
+                    <input type="password" name="password" id="siPassword" placeholder="Password">
                     <button type="submit" class="register-btn">Sign In</button>
                 </form>
 
@@ -130,8 +132,9 @@
                                 <option value="AB+">AB+</option>
                                 <option value="AB-">AB-</option>
                             </select>
-                            <label class="field-label">Last Donation Date <span style="font-weight:400;color:#999;">(if applicable)</span></label>
-                            <input type="date" id="lastDonation">
+                            <label class="field-label">
+                                Last Donation <span class="label-hint">(if applicable)</span>
+                            </label>
                             <select id="donationCount" required>
                                 <option value="">How many times have you donated before?</option>
                                 <option value="0">Never - this is my first time</option>
@@ -139,6 +142,7 @@
                                 <option value="6-10">6 - 10 times</option>
                                 <option value="11+">More than 10 times</option>
                             </select>
+                            <input type="date" id="lastDonation">
                             <select id="availability" required>
                                 <option value="">Availability for Donation</option>
                                 <option value="urgent">Available for Urgent Cases</option>
@@ -147,19 +151,21 @@
                             </select>
                             <div class="checkbox-row">
                                 <input type="checkbox" id="updates" name="updates">
-                                <label for="updates">I would like to receive email notifications about urgent donation requests near me.</label>
+                                <label for="updates">I would like to receive email notifications about urgent donation
+                                    requests near me.</label>
                             </div>
                             <div style="display:flex; gap:12px;">
                                 <button type="button" id="backStep3" class="btn-main btn-back">Back</button>
-                                <button type="button" class="register-btn" id="submitSignUp">Complete Registration</button>
+                                <button type="button" class="register-btn" id="submitSignUp">Complete
+                                    Registration</button>
                             </div>
                         </div>
                     </div>
 
-                    <div id="successMsg" style="display:none; text-align:center; padding:30px 0;">
-                        <div style="font-size:3rem; margin-bottom:12px;">🩸</div>
-                        <h3 style="color:#c62828; margin-bottom:8px;">You're a Hero!</h3>
-                        <p style="color:#555;">Thank you for registering. Your profile is now live on LifeDrop.</p>
+                    <div id="successMsg" class="success-container">
+                        <div class="success-icon">🩸</div>
+                        <h3 class="success-title">You're a Hero!</h3>
+                        <p class="success-text">Thank you for registering. Your profile is now live on LifeDrop.</p>
                     </div>
 
                 </div>
@@ -219,4 +225,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>
