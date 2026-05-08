@@ -152,7 +152,7 @@ app.post("/contact", [
 });
 
 //Route to handle Search submissions
-app.get("/search-donors", (req, res) => {
+/*app.get("/search-donors", (req, res) => {
     const { bloodType, city } = req.query;
     let sql = "SELECT first_name, last_name, email, mobile, blood_type, city FROM donors WHERE 1=1";
     let params = [];
@@ -166,12 +166,55 @@ app.get("/search-donors", (req, res) => {
         sql += " AND city = ?";
         params.push(city);
     }
+    console.log(sql);
+    console.log(params);
 
     db.query(sql, params, (err, results) => {
         if (err) {
             console.error("Search error: ", err);
             return res.status(500).json({ error: "Database search failed" });
         }
+        res.json(results);
+    });
+});*/
+
+app.get("/search-donors", (req, res) => {
+
+    const bloodType = req.query.bloodType?.trim();
+    const city = req.query.city?.trim();
+
+    let sql = `
+        SELECT first_name, last_name, email, mobile, blood_type, city
+        FROM donors
+        WHERE 1=1
+    `;
+
+    let params = [];
+
+    if (bloodType) {
+        sql += " AND blood_type = ?";
+        params.push(bloodType);
+    }
+
+    if (city) {
+        sql += " AND city = ?";
+        params.push(city);
+    }
+
+    console.log("SQL:", sql);
+    console.log("PARAMS:", params);
+
+    db.query(sql, params, (err, results) => {
+
+        if (err) {
+            console.error(err);
+            return res.status(500).json({
+                error: "Database search failed"
+            });
+        }
+
+        console.log("RESULTS:", results);
+
         res.json(results);
     });
 });

@@ -263,3 +263,201 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     })();
 });
+
+// Search Donors
+
+/*const donorSearchBtn = document.getElementById("searchBtn");
+
+if (donorSearchBtn) {
+
+    donorSearchBtn.addEventListener("click", async () => {
+
+        const bloodType = document.getElementById("bloodType").value;
+        const city = document.getElementById("city").value;
+
+        try {
+
+            const response = await fetch(
+                `/search-donors?bloodType=${bloodType}&city=${city}`
+            );
+
+            const donors = await response.json();
+
+            const resultsContainer = document.getElementById("resultsContainer");
+            const resultsMeta = document.querySelector(".results-meta");
+
+            resultsContainer.innerHTML = "";
+
+            resultsMeta.textContent =
+                `${donors.length} Heroes available for donation`;
+
+            if (donors.length === 0) {
+
+                resultsContainer.innerHTML = `
+                    <p style="font-size:18px; color:#666;">
+                        No donors found.
+                    </p>
+                `;
+
+                return;
+            }
+
+            donors.forEach(donor => {
+
+                resultsContainer.innerHTML += `
+
+                    <div class="donor-card">
+
+                        <div class="donor-main-info">
+
+                            <div class="blood-badge">
+                                ${donor.blood_type}
+                            </div>
+
+                            <div class="donor-text">
+
+                                <h3>
+                                    ${donor.first_name} ${donor.last_name}
+                                </h3>
+
+                                <p>
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    ${donor.city}, Saudi Arabia
+                                </p>
+
+                                <span class="availability">
+                                    AVAILABLE NOW
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <a href="tel:${donor.mobile}" class="btn-solid-dark">
+                            CONTACT
+                        </a>
+
+                    </div>
+
+                `;
+            });
+
+        } catch (error) {
+
+            console.error("Search Error:", error);
+
+        }
+
+    });
+
+}*/
+
+const donorSearchBtn = document.getElementById("searchBtn");
+
+if (donorSearchBtn) {
+
+    donorSearchBtn.addEventListener("click", async () => {
+
+        const bloodType =
+            document.getElementById("bloodType").value.trim();
+
+        const city =
+            document.getElementById("city").value.trim();
+
+            if (!bloodType || !city) {
+
+              alert("Please select both Blood Type and City.");
+
+              return;
+           }
+
+        let url = "/search-donors?";
+
+        if (bloodType) {
+            url += `bloodType=${encodeURIComponent(bloodType)}&`;
+        }
+
+        if (city) {
+            url += `city=${encodeURIComponent(city)}`;
+        }
+
+        console.log(url);
+
+        try {
+
+            const response = await fetch(url);
+
+            const donors = await response.json();
+
+            console.log(donors);
+
+            const resultsContainer =
+                document.getElementById("resultsContainer");
+
+            const resultsMeta =
+                document.querySelector(".results-meta");
+
+            resultsContainer.innerHTML = "";
+
+            resultsMeta.textContent =
+                `${donors.length} Heroes available for donation`;
+
+            if (donors.length === 0) {
+
+                resultsContainer.innerHTML = `
+                    <p style="font-size:18px; color:#666;">
+                        No donors found.
+                    </p>
+                `;
+
+                return;
+            }
+
+            donors.forEach(donor => {
+
+                resultsContainer.innerHTML += `
+                    <div class="donor-card">
+
+                        <div class="donor-main-info">
+
+                            <div class="blood-badge">
+                                ${donor.blood_type}
+                            </div>
+
+                            <div class="donor-text">
+
+                                <h3>
+                                    ${donor.first_name}
+                                    ${donor.last_name}
+                                </h3>
+
+                                <p>
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    ${donor.city}, Saudi Arabia
+                                </p>
+
+                                <span class="availability">
+                                    AVAILABLE NOW
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                        <a href="tel:${donor.mobile}"
+                           class="btn-solid-dark">
+                           CONTACT
+                        </a>
+
+                    </div>
+                `;
+            });
+
+        } catch (error) {
+
+            console.error("Search Error:", error);
+
+        }
+
+    });
+
+}
