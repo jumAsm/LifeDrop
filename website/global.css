@@ -1136,6 +1136,18 @@ footer-logo {
     transform: translateY(-2px);
 }
 
+.contact-form .input-group {
+    flex: 1 ;
+}
+
+.contact-form .input-group input,
+.contact-form .input-group select {
+    height: 50px !important;
+    padding: 0 20px !important;
+    border-radius: 50px !important;
+}
+
+
 /*  LABEL  */
 .form-section-label {
     font-size: 0.85rem;

@@ -461,3 +461,174 @@ if (donorSearchBtn) {
     });
 
 }
+
+// --- Contact Us Page Logic ---
+
+document.addEventListener("DOMContentLoaded", function () {
+    const contactForm = document.getElementById("contactForm");
+    const contactSuccessMsg = document.getElementById("contactSuccessMsg");
+
+    // Show error message under the input
+    function showContactError(input, message) {
+        clearContactError(input);
+        if (!input) return;
+
+        input.classList.add("input-error");
+
+        const err = document.createElement("span");
+        err.className = "error-msg";
+        err.textContent = message;
+
+        input.insertAdjacentElement("afterend", err);
+    }
+
+    // Remove old error message
+    function clearContactError(input) {
+        if (!input) return;
+
+        input.classList.remove("input-error");
+
+        const next = input.nextElementSibling;
+        if (next && next.classList.contains("error-msg")) {
+            next.remove();
+        }
+    }
+    // Check if field is empty
+    function validateContactRequired(input, message) {
+        if (!input.value.trim()) {
+            showContactError(input, message);
+            return false;
+        }
+
+        clearContactError(input);
+        return true;
+    }
+
+    // Validate name (letters only)
+    function validateContactName(input, message) {
+        const re = /^[A-Za-z\u0600-\u06FF ]{2,}$/;
+
+        if (!input.value.trim()) {
+            showContactError(input, message);
+            return false;
+        }
+
+        if (!re.test(input.value.trim())) {
+            showContactError(input, "Name must contain letters only.");
+            return false;
+        }
+
+        clearContactError(input);
+        return true;
+    }
+
+    // Validate email format
+    function validateContactEmail(input) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!input.value.trim()) {
+            showContactError(input, "Email is required.");
+            return false;
+        }
+
+        if (!re.test(input.value.trim())) {
+            showContactError(input, "Please enter a valid email address.");
+            return false;
+        }
+
+        clearContactError(input);
+        return true;
+    }
+
+    // Validate Saudi mobile number
+    function validateContactMobile(input) {
+        const re = /^0[0-9]{9}$/;
+
+        if (!re.test(input.value.trim())) {
+            showContactError(input, " Must start with 0 and contain 10 digits.");
+            return false;
+        }
+
+        clearContactError(input);
+        return true;
+    }
+
+    if (contactForm) {
+        // Handle form submission
+        contactForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const fName = document.getElementById("firstName");
+            const lName = document.getElementById("lastName");
+            const gender = document.getElementById("gender");
+            const mobile = document.getElementById("mobile");
+            const dob = document.getElementById("dob");
+            const email = document.getElementById("email");
+            const lang = document.getElementById("language");
+            const message = document.getElementById("message");
+
+            let isFormValid = true;
+
+            if (!validateContactName(fName, "First name is required.")) isFormValid = false;
+            if (!validateContactName(lName, "Last name is required.")) isFormValid = false;
+            if (!validateContactRequired(gender, "Please select gender.")) isFormValid = false;
+            if (!validateContactMobile(mobile)) isFormValid = false;
+            if (!validateContactRequired(dob, "Date of birth is required.")) isFormValid = false;
+            if (!validateContactEmail(email)) isFormValid = false;
+            if (!validateContactRequired(lang, "Please select a language.")) isFormValid = false;
+
+            if (message.value.trim().length < 10) {
+                showContactError(message, "Message must be at least 10 characters.");
+                isFormValid = false;
+            } else {
+                clearContactError(message);
+            }
+
+            if (isFormValid) {
+                submitContactAJAX();
+            }
+        });
+    }
+
+    // Send form data to backend
+    async function submitContactAJAX() {
+        const formData = new FormData(contactForm);
+        const data = Object.fromEntries(formData.entries());
+
+        if (window.location.port === "5500") {
+            console.log("Live Server detected: Showing success message for testing.");
+            showSuccessUI();
+        }
+
+        try {
+            const response = await fetch('/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+
+            if (response.ok) {
+                showSuccessUI();
+            } else if (window.location.port !== "5500") {
+                alert("Server error. Please try again later.");
+            }
+        } catch (error) {
+            console.error("Fetch Error:", error);
+
+            if (window.location.port !== "5500") {
+                alert("Connection error. Ensure the server is running.");
+            }
+        }
+    }
+
+    // Show success message 
+    function showSuccessUI() {
+        contactForm.style.display = "none";
+        contactSuccessMsg.style.display = "block";
+        window.scrollTo({ top: 100, behavior: "smooth" });
+    }
+
+    document.querySelectorAll("#contactForm input, #contactForm select, #contactForm textarea").forEach(el => {
+        el.addEventListener("input", () => clearContactError(el));
+    });
+});
