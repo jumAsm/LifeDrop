@@ -7,21 +7,18 @@ app.use("/", express.static("./website"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-const db = mysql.createConnection({
+const db = mysql.createPool({
     host: "127.0.0.1",
     user: "root",
     password: "root",
     database: "lifedrop_db",
-    port: "3306"
+    port: "3306",
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0
 });
 
-db.connect(function (err) {
-    if (err) {
-        console.error("Cannot connect to database", err);
-    } else {
-        console.log("Connected to database!");
-    }
-});
+console.log("Database Pool is ready and waiting for requests!");
 
 
 //Route to handle Sign Up form submissions
@@ -33,7 +30,7 @@ app.post("/register", [
     check("mobile").isLength({ min: 10, max: 10 }).isNumeric().withMessage("Mobile must be 10 digits").escape(),
     check("bloodType").notEmpty().withMessage("Blood type is required").escape()
 ], (req, res) => {
-    
+
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ success: false, errors: errors.array() });
@@ -45,7 +42,7 @@ app.post("/register", [
         lastDonation, donationCount, availability
     } = req.body;
 
-  const checkEmailSql = "SELECT * FROM donors WHERE LOWER(email) = LOWER(?)";    
+    const checkEmailSql = "SELECT * FROM donors WHERE LOWER(email) = LOWER(?)";
     db.query(checkEmailSql, [email], (err, results) => {
         if (err) {
             console.error("Database Check Error:", err);
@@ -53,9 +50,9 @@ app.post("/register", [
         }
 
         if (results.length > 0) {
-            return res.json({ 
-                success: false, 
-                message: "This email is already registered. Please Sign In instead." 
+            return res.json({
+                success: false,
+                message: "This email is already registered. Please Sign In instead."
             });
         }
 
@@ -74,18 +71,21 @@ app.post("/register", [
                 console.error("Error saving to database:", err);
                 return res.status(500).json({ success: false, message: "Database insertion failed" });
             }
-            
-            res.json({ 
-                success: true, 
-                message: "New hero registered successfully!", 
-                firstName: firstName 
+
+            res.json({
+                success: true,
+                message: "New hero registered successfully!",
+                firstName: firstName
             });
         });
     });
 });
 
 //Route to handle Log In form submissions
-app.post("/login", (req, res) => {
+app.post("/login", [
+    check("email").isEmail().withMessage("Invalid email format").normalizeEmail().escape(),
+    check("password").notEmpty().withMessage("Password is required").escape()
+], (req, res) => {
     const { email, password } = req.body;
     const checkEmailSql = "SELECT * FROM donors WHERE LOWER(email) = LOWER(?)";
 
@@ -96,9 +96,9 @@ app.post("/login", (req, res) => {
         }
 
         if (results.length === 0) {
-            return res.json({ 
-                success: false, 
-                message: "This email is not registered. Please create an account first." 
+            return res.json({
+                success: false,
+                message: "This email is not registered. Please create an account first."
             });
         }
         const user = results[0];
@@ -123,24 +123,22 @@ app.post("/check-email", (req, res) => {
     });
 });
 
+
 //Route to handle Contact Us form submissions
 app.post("/contact", [
-    check("email").isEmail().withMessage("Invalid email").normalizeEmail().escape(),
-    check("firstName").trim().notEmpty().withMessage("First name required").escape(),
-    check("message").trim().isLength({ min: 10 }).withMessage("Message too short").escape()
+    check("email").isEmail().normalizeEmail().escape(),
+    check("firstName").trim().notEmpty().escape(),
+    check("lastName").trim().notEmpty().escape(),
+    check("mobile").isLength({ min: 10, max: 10 }).escape(),
+    check("message").trim().isLength({ min: 10 }).escape()
 ], (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ success: false, errors: errors.array() });
     }
-
-    const { firstName, lastName, gender, mobile, dob, email, language, message } = req.body;
-
-    const sql = `INSERT INTO messages 
-        (first_name, last_name, gender, mobile, dob, email, language, message) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
-
-    const values = [firstName, lastName, gender, mobile, dob, email, language, message];
+    const { firstName, lastName, mobile, email, language, message } = req.body;
+    const sql = `INSERT INTO messages (first_name, last_name, mobile, email, language, message) VALUES (?, ?, ?, ?, ?, ?)`;
+    const values = [firstName, lastName, mobile, email, language, message];
 
     db.query(sql, values, (err, result) => {
         if (err) {
@@ -151,35 +149,9 @@ app.post("/contact", [
     });
 });
 
+
 //Route to handle Search submissions
-/*app.get("/search-donors", (req, res) => {
-    const { bloodType, city } = req.query;
-    let sql = "SELECT first_name, last_name, email, mobile, blood_type, city FROM donors WHERE 1=1";
-    let params = [];
-
-    if (bloodType && bloodType !== "") {
-        sql += " AND blood_type = ?";
-        params.push(bloodType);
-    }
-
-    if (city && city !== "") {
-        sql += " AND city = ?";
-        params.push(city);
-    }
-    console.log(sql);
-    console.log(params);
-
-    db.query(sql, params, (err, results) => {
-        if (err) {
-            console.error("Search error: ", err);
-            return res.status(500).json({ error: "Database search failed" });
-        }
-        res.json(results);
-    });
-});*/
-
 app.get("/search-donors", (req, res) => {
-
     const bloodType = req.query.bloodType?.trim();
     const city = req.query.city?.trim();
 
@@ -218,7 +190,6 @@ app.get("/search-donors", (req, res) => {
         res.json(results);
     });
 });
-
 
 
 const PORT = 4000;

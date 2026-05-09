@@ -43,8 +43,12 @@
 
                 <form class="register-form" id="signInForm" action="#" method="post">
                     <p class="form-section-label">Sign In</p>
-                    <input type="email" name="email" id="siEmail" placeholder="Email Address">
-                    <input type="password" name="password" id="siPassword" placeholder="Password">
+                    <div class="input-group">
+                        <input type="email" name="email" id="siEmail" placeholder="Email Address">
+                    </div>
+                    <div class="input-group">
+                        <input type="password" name="password" id="siPassword" placeholder="Password">
+                    </div>
                     <button type="submit" class="register-btn">Sign In</button>
                 </form>
 
@@ -70,97 +74,119 @@
                     <div id="step1">
                         <p class="form-section-label">Account</p>
                         <div class="register-form">
-                            <input type="email" id="email" placeholder="Email Address" required>
-                            <input type="password" id="password" placeholder="Create Password" required>
+                            <div class="input-group">
+                                <input type="email" id="email" placeholder="Email Address" required>
+                            </div>
+                            <div class="input-group">
+                                <input type="password" id="password" placeholder="Create Password" required>
+                            </div>
                             <button type="button" class="register-btn" id="nextStep1">Next</button>
                         </div>
                     </div>
 
-                    <div id="step2" style="display:none;">
-                        <p class="form-section-label">Personal Information</p>
-                        <div class="register-form">
-                            <div class="form-row">
-                                <input type="text" id="firstName" placeholder="First Name" required>
-                                <input type="text" id="lastName" placeholder="Last Name" required>
-                            </div>
-                            <div class="form-row">
-                                <select id="gender" required>
-                                    <option value="">Select Gender</option>
-                                    <option value="Female">Female</option>
-                                    <option value="Male">Male</option>
-                                </select>
-                                <input type="date" id="dob" required>
-                            </div>
-                            <input type="tel" id="mobile" placeholder="Mobile Number" maxlength="10" required>
-                            <div class="form-row">
-                                <select id="city" required>
-                                    <option value="">Select City</option>
-                                    <option value="Riyadh">Riyadh</option>
-                                    <option value="Jeddah">Jeddah</option>
-                                    <option value="Mecca">Mecca</option>
-                                    <option value="Medina">Medina</option>
-                                    <option value="Dammam">Dammam</option>
-                                    <option value="Khobar">Khobar</option>
-                                    <option value="Taif">Taif</option>
-                                    <option value="Tabuk">Tabuk</option>
-                                    <option value="Other">Other</option>
-                                </select>
-                                <select id="nationality" required>
-                                    <option value="">Nationality</option>
-                                    <option value="Saudi">Saudi</option>
-                                    <option value="Non-Saudi">Non-Saudi</option>
-                                </select>
-                            </div>
-                            <div style="display:flex; gap:12px;">
-                                <button type="button" id="backStep2" class="btn-main btn-back">Back</button>
-                                <button type="button" class="register-btn" id="nextStep2">Next </button>
-                            </div>
-                        </div>
-                    </div>
+                   <div id="step2" style="display:none;">
+    <p class="form-section-label">Personal Information</p>
+    <div class="register-form">
+        <div class="form-row">
+            <div class="input-group">
+                <input type="text" id="firstName" placeholder="First Name" required>
+            </div>
+            <div class="input-group">
+                <input type="text" id="lastName" placeholder="Last Name" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="input-group">
+                <select id="gender" required>
+                    <option value="">Select Gender</option>
+                    <option value="Female">Female</option>
+                    <option value="Male">Male</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <input type="date" id="dob" required>
+            </div>
+        </div>
+        <div class="input-group">
+            <input type="tel" id="mobile" placeholder="Mobile Number" maxlength="10" pattern="[0-9]{10}" required>
+        </div>
+        <div class="form-row">
+            <div class="input-group">
+                <select id="city" required>
+                    <option value="">Select City</option>
+                    <option value="Riyadh">Riyadh</option>
+                    <option value="Jeddah">Jeddah</option>
+                    <option value="Mecca">Mecca</option>
+                    <option value="Medina">Medina</option>
+                    <option value="Dammam">Dammam</option>
+                    <option value="Khobar">Khobar</option>
+                    <option value="Taif">Taif</option>
+                    <option value="Tabuk">Tabuk</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <select id="nationality" required>
+                    <option value="">Nationality</option>
+                    <option value="Saudi">Saudi</option>
+                    <option value="Non-Saudi">Non-Saudi</option>
+                </select>
+            </div>
+        </div>
+        <div style="display:flex; gap:12px;">
+            <button type="button" id="backStep2" class="btn-main btn-back">Back</button>
+            <button type="button" class="register-btn" id="nextStep2">Next</button>
+        </div>
+    </div>
+</div>
 
-                    <div id="step3" style="display:none;">
-                        <p class="form-section-label">Medical Information</p>
-                        <div class="register-form">
-                            <select id="bloodType" required>
-                                <option value="">Select Blood Type</option>
-                                <option value="A+">A+</option>
-                                <option value="A-">A-</option>
-                                <option value="B+">B+</option>
-                                <option value="B-">B-</option>
-                                <option value="O+">O+</option>
-                                <option value="O-">O-</option>
-                                <option value="AB+">AB+</option>
-                                <option value="AB-">AB-</option>
-                            </select>
-                            <label class="field-label">
-                                Last Donation <span class="label-hint">(if applicable)</span>
-                            </label>
-                            <select id="donationCount" required>
-                                <option value="">How many times have you donated before?</option>
-                                <option value="0">Never - this is my first time</option>
-                                <option value="1-5">1 - 5 times</option>
-                                <option value="6-10">6 - 10 times</option>
-                                <option value="11+">More than 10 times</option>
-                            </select>
-                            <input type="date" id="lastDonation">
-                            <select id="availability" required>
-                                <option value="">Availability for Donation</option>
-                                <option value="urgent">Available for Urgent Cases</option>
-                                <option value="scheduled">Scheduled Donation Only</option>
-                                <option value="both">Both</option>
-                            </select>
-                            <div class="checkbox-row">
-                                <input type="checkbox" id="updates" name="updates">
-                                <label for="updates">I would like to receive email notifications about urgent donation
-                                    requests near me.</label>
-                            </div>
-                            <div style="display:flex; gap:12px;">
-                                <button type="button" id="backStep3" class="btn-main btn-back">Back</button>
-                                <button type="button" class="register-btn" id="submitSignUp">Complete
-                                    Registration</button>
-                            </div>
-                        </div>
-                    </div>
+<div id="step3" style="display:none;">
+    <p class="form-section-label">Medical Information</p>
+    <div class="register-form">
+        <div class="input-group">
+            <select id="bloodType" required>
+                <option value="">Select Blood Type</option>
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <select id="donationCount" required>
+                <option value="">How many times have you donated before?</option>
+                <option value="0">Never - this is my first time</option>
+                <option value="1-5">1 - 5 times</option>
+                <option value="6-10">6 - 10 times</option>
+                <option value="11+">More than 10 times</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label class="field-label">Last Donation <span class="label-hint">(if applicable)</span></label>
+            <input type="date" id="lastDonation">
+        </div>
+        <div class="input-group">
+            <select id="availability" required>
+                <option value="">Availability for Donation</option>
+                <option value="urgent">Available for Urgent Cases</option>
+                <option value="scheduled">Scheduled Donation Only</option>
+                <option value="both">Both</option>
+            </select>
+        </div>
+        <div class="checkbox-row">
+            <input type="checkbox" id="updates" name="updates">
+            <label for="updates">I would like to receive email notifications about urgent donation requests near me.</label>
+        </div>
+        <div style="display:flex; gap:12px;">
+            <button type="button" id="backStep3" class="btn-main btn-back">Back</button>
+            <button type="button" class="register-btn" id="submitSignUp">Complete Registration</button>
+        </div>
+    </div>
+</div>
 
                     <div id="successMsg" class="success-container">
                         <div class="success-icon">🩸</div>

@@ -7,7 +7,7 @@
     <title>LifeDrop - Find a Donor</title>
     <link rel="stylesheet" href="global.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    </head>
+</head>
 
 <body>
 
@@ -67,8 +67,26 @@
             </div>
             <div class="search-content">
                 <div class="results-meta">0 Heroes available for donation</div>
-                  <div id="resultsContainer"></div>
-                                
+                <div id="results-Container">
+                    <p id="no-results" style="display:none;">
+                        No donors found in this city.
+                    </p>
+                    <div class="donor-card" id="donorCard" style="display:none;">
+                        <div class="donor-main-info">
+                            <div class="blood-badge"></div>
+                            <div class="donor-text">
+                                <h3 class="donor-name"></h3>
+                                <p>
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    <span class="donor-city"></span>, Saudi Arabia
+                                </p>
+                                <span class="availability">AVAILABLE NOW</span>
+                            </div>
+                        </div>
+                        <a href="#" class="btn-solid-dark contact-link">CONTACT</a>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -92,8 +110,8 @@
             </div>
         </div>
     </footer>
-   
-<script src="script.js"></script>
+
+    <script src="script.js"></script>
 </body>
 
 </html>

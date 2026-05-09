@@ -4,52 +4,57 @@ document.addEventListener("DOMContentLoaded", function () {
     const btnSignUp = document.getElementById("btnSignUp");
     const signInForm = document.getElementById("signInForm");
     const signUpForm = document.getElementById("signUpForm");
+    const donorSearchBtn = document.getElementById("searchBtn");
+    const contactForm = document.getElementById("contactForm");
     let currentStep = 1;
 
 
 
-
-    //Validation Functions    
-    //Function to add red error text and border style 
-    function showError(input, message) {
-        clearError(input);
+    //Validation Functions
+    //Errors for users
+    function showSoftError(input, message) {
+        clearSoftError(input);
         if (!input) return;
         input.classList.add("input-error");
         const err = document.createElement("span");
         err.className = "error-msg";
         err.textContent = message;
-        input.insertAdjacentElement("afterend", err);
+        input.parentElement.appendChild(err);
     }
-    //Function to remove error styles and elements
-    function clearError(input) {
+
+    function clearSoftError(input) {
         if (!input) return;
         input.classList.remove("input-error");
         const next = input.nextElementSibling;
         if (next && next.classList.contains("error-msg")) next.remove();
     }
+
     //Email validation 
     function validateEmail(input) {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!input.value.trim()) { showError(input, "Email is required."); return false; }
-        if (!re.test(input.value.trim())) { showError(input, "Invalid email format."); return false; }
-        clearError(input); return true;
+        if (!input.value.trim()) { showSoftError(input, "Email is required."); return false; }
+        if (!re.test(input.value.trim())) { showSoftError(input, "Invalid email format."); return false; }
+        clearSoftError(input); return true;
     }
+
     //Password length validation
     function validatePassword(input) {
-        if (!input.value) { showError(input, "Password is required."); return false; }
-        if (input.value.length < 8) { showError(input, "Must be at least 8 characters."); return false; }
-        clearError(input); return true;
+        if (!input.value) { showSoftError(input, "Password is required."); return false; }
+        if (input.value.length < 8) { showSoftError(input, "Must be at least 8 characters."); return false; }
+        clearSoftError(input); return true;
     }
+
     //Basic validation for text and select fields
     function validateRequired(input, message) {
-        if (input.value.trim().length < 1) { showError(input, message); return false; }
-        clearError(input); return true;
+        if (input.value.trim().length < 1) { showSoftError(input, message); return false; }
+        clearSoftError(input); return true;
     }
+
     //Mobile number validation
     function validateMobile(input) {
         const re = /^[0-9]{10}$/;
-        if (!re.test(input.value.trim())) { showError(input, "Mobile must be 10 digits."); return false; }
-        clearError(input); return true;
+        if (!re.test(input.value.trim())) { showSoftError(input, "Mobile must be 10 digits."); return false; }
+        clearSoftError(input); return true;
     }
 
     //Sign Up Steps 
@@ -62,18 +67,6 @@ document.addEventListener("DOMContentLoaded", function () {
         currentStep = step;
         window.scrollTo({ top: 200, behavior: "smooth" });
     }
-    //Progress bar update
-    function updateStepsBar(active) {
-        for (let i = 1; i <= 3; i++) {
-            const s = document.getElementById("s" + i);
-            if (s) {
-                s.classList.remove("active", "done");
-                if (i < active) s.classList.add("done");
-                else if (i === active) s.classList.add("active");
-            }
-        }
-    }
-
 
 
 
@@ -90,127 +83,121 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+
+    //Progress bar update
+    function updateStepsBar(active) {
+        for (let i = 1; i <= 3; i++) {
+            const s = document.getElementById("s" + i);
+            if (s) {
+                s.classList.remove("active", "done");
+                if (i < active) s.classList.add("done");
+                else if (i === active) s.classList.add("active");
+            }
+        }
+    }
+
     //Sign Up - Step 1 Verification
     document.getElementById("nextStep1")?.addEventListener("click", () => {
         const emailField = document.getElementById("email");
         const passField = document.getElementById("password");
 
         if (validateEmail(emailField) && validatePassword(passField)) {
-            clearError(emailField);
             fetch('/check-email', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email: emailField.value })
             })
                 .then(res => {
-                    if (!res.ok) throw new Error("Server is not responding correctly");
+                    if (!res.ok) throw new Error("Server Error");
                     return res.json();
                 })
                 .then(data => {
                     if (data.exists) {
-                        showError(emailField, "This email is already registered. Please Sign In instead.");
+                        showSoftError(emailField, "This email is already registered.");
                     } else {
                         goToStep(2);
                     }
                 })
-                .catch(err => {
-                    console.error("Error details:", err);
-                    showError(emailField, "Verification error. Please ensure the server is running.");
-                });
+                .catch(err => alert("Connection Error: Check if the server is running."));
         }
     });
 
     //Sign Up - Step 2 Verification
     document.getElementById("nextStep2")?.addEventListener("click", () => {
-        const isFnameOk = validateRequired(document.getElementById("firstName"), "First name required.");
-        const isLnameOk = validateRequired(document.getElementById("lastName"), "Last name required.");
-        const isMobileOk = validateMobile(document.getElementById("mobile"));
-        const isCityOk = validateRequired(document.getElementById("city"), "City selection required.");
-        if (isFnameOk && isLnameOk && isMobileOk && isCityOk) goToStep(3);
-    });
+    const isFnameOk = validateRequired(document.getElementById("firstName"), "First name required.");
+    const isLnameOk = validateRequired(document.getElementById("lastName"), "Last name required.");
+    const isGenderOk = validateRequired(document.getElementById("gender"), "Please select gender.");
+    const isDobOk = validateRequired(document.getElementById("dob"), "Date of birth is required.");
+    const isMobileOk = validateMobile(document.getElementById("mobile"));
+    const isCityOk = validateRequired(document.getElementById("city"), "City selection required.");
+    const isNationalityOk = validateRequired(document.getElementById("nationality"), "Nationality required.");
+
+    if (isFnameOk && isLnameOk && isGenderOk && isDobOk && isMobileOk && isCityOk && isNationalityOk) {
+        goToStep(3);
+    }
+});
 
     // Back Navigation
     document.getElementById("backStep2")?.addEventListener("click", () => goToStep(1));
     document.getElementById("backStep3")?.addEventListener("click", () => goToStep(2));
 
-    //Enter Key Handler
-    document.addEventListener("keydown", function (e) {
-        if (e.key === "Enter" && e.target.tagName !== "TEXTAREA") {
-
-            const isSignUpVisible = signUpForm && window.getComputedStyle(signUpForm).display !== "none";
-            const isSignInVisible = signInForm && window.getComputedStyle(signInForm).display !== "none";
-
-            if (isSignUpVisible) {
-                e.preventDefault();
-                if (currentStep === 1) document.getElementById("nextStep1").click();
-                else if (currentStep === 2) document.getElementById("nextStep2").click();
-                else if (currentStep === 3) document.getElementById("submitSignUp").click();
-            }
-            else if (isSignInVisible) {
-                const siBtn = signInForm.querySelector(".register-btn");
-                if (siBtn) { e.preventDefault(); siBtn.click(); }
-            }
-        }
-    });
-
-
 
 
 //Backend Communication AJAX - Fetch
-//Sign Up Submission
-    document.getElementById("submitSignUp")?.addEventListener("click", function () {
-        const blood = document.getElementById("bloodType");
-        if (validateRequired(blood, "Blood type selection required.")) {
-            const formData = {
-                email: document.getElementById("email").value,
-                password: document.getElementById("password").value,
-                firstName: document.getElementById("firstName").value,
-                lastName: document.getElementById("lastName").value,
-                gender: document.getElementById("gender").value,
-                dob: document.getElementById("dob").value,
-                mobile: document.getElementById("mobile").value,
-                city: document.getElementById("city").value,
-                nationality: document.getElementById("nationality").value,
-                bloodType: document.getElementById("bloodType").value,
-                lastDonation: document.getElementById("lastDonation").value || null,
-                donationCount: document.getElementById("donationCount").value,
-                availability: document.getElementById("availability").value
-            };
+    //Sign Up Submission - step 3
+  document.getElementById("submitSignUp")?.addEventListener("click", function () {
+    const bloodField = document.getElementById("bloodType");
+    const countField = document.getElementById("donationCount");
+    const availField = document.getElementById("availability");
+    const isBloodOk = validateRequired(bloodField, "Blood type selection required.");
+    const isCountOk = validateRequired(countField, "Please select how many times you donated.");
+    const isAvailOk = validateRequired(availField, "Please select your availability status.");
 
-            fetch('/register', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData)
-            })
-                .then(res => { if (!res.ok) throw new Error("Server Error"); return res.json(); })
-                .then(data => {
-                    if (data.success) {
-                        localStorage.setItem("userName", data.firstName);
-                        document.getElementById("step3").style.display = "none";
-                        const successDiv = document.getElementById("successMsg");
-                        if (successDiv) {
-                            successDiv.style.display = "block";
-                        }
-                        setTimeout(() => { window.location.href = "index.html"; }, 2500);
-                    } else { alert("Registration Error: " + data.message); }
-                })
-                .catch(err => alert("Connection Error."));
-        }
-    });
+    if (isBloodOk && isCountOk && isAvailOk) {
+        const formData = {
+            email: document.getElementById("email").value,
+            password: document.getElementById("password").value,
+            firstName: document.getElementById("firstName").value,
+            lastName: document.getElementById("lastName").value,
+            gender: document.getElementById("gender").value,
+            dob: document.getElementById("dob").value,
+            mobile: document.getElementById("mobile").value,
+            city: document.getElementById("city").value,
+            nationality: document.getElementById("nationality").value,
+            bloodType: bloodField.value,
+            lastDonation: document.getElementById("lastDonation").value || null,
+            donationCount: countField.value,
+            availability: availField.value
+        };
+
+        fetch('/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData)
+        })
+        .then(res => {
+            if (!res.ok) { alert("Registration Failed: Server error."); return; }
+            return res.json();
+        })
+        .then(data => {
+            if (data.success) {
+                localStorage.setItem("userName", data.firstName);
+                document.getElementById("step3").style.display = "none";
+                document.getElementById("successMsg").style.display = "block";
+                setTimeout(() => { window.location.href = "index.html"; }, 2500);
+            } else { alert("Error: " + data.message); }
+        })
+        .catch(err => alert("Server offline."));
+    } 
+});
 
     //Sign In Submission
     signInForm?.addEventListener("submit", function (e) {
         e.preventDefault();
-        const em = document.getElementById("siEmail");
-        const ps = document.getElementById("siPassword");
+        const em = document.getElementById("siEmail"); 
+        const ps = document.getElementById("siPassword"); 
 
-        clearError(em);
-        clearError(ps);
-
-        const isEmailOk = validateEmail(em);
-        const isPassOk = validatePassword(ps);
-
-        if (isEmailOk && isPassOk) {
+        if (validateEmail(em) && validatePassword(ps)) {
             fetch('/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -225,410 +212,182 @@ document.addEventListener("DOMContentLoaded", function () {
                         localStorage.setItem("userName", data.firstName);
                         window.location.href = "index.html";
                     } else {
-                        showError(em, data.message);
+                        if (data.message.toLowerCase().includes("password") || data.message.includes("Password")) {
+                            showSoftError(ps, data.message);
+                        } else {
+                            showSoftError(em, data.message); 
+                        }
                     }
                 })
-                .catch(err => {
-                    console.error("Sign-in error:", err);
-                    showError(em, "Server offline. Check Terminal.");
-                });
+                .catch(err => alert("Connection to server failed."));
         }
     });
 
-    //Clear validation 
-    document.querySelectorAll("input, select").forEach(el => {
-        el.addEventListener("input", () => clearError(el));
-    });
+//Avatar Update
+(function updateAvatar() {
+    const savedName = localStorage.getItem("userName");
+    if (savedName) {
+        const navBtn = document.querySelector(".nav-btn-dark");
+        const navWrapper = document.querySelector(".nav-wrapper");
+        const heroBtnArea = document.querySelector(".hero-buttons");
 
-    //Avatar Update
-    (function updateAvatar() {
-        const savedName = localStorage.getItem("userName");
-        if (savedName) {
-            const navBtn = document.querySelector(".nav-btn-dark");
-            const navWrapper = document.querySelector(".nav-wrapper");
-            if (navBtn && navWrapper) {
-                navBtn.style.display = "none";
-                const avatar = document.createElement("div");
-                avatar.className = "user-avatar";
-                avatar.textContent = savedName.charAt(0).toUpperCase();
-                navWrapper.appendChild(avatar);
-
-                avatar.onclick = () => {
-                    if (confirm("Log out?")) {
-                        localStorage.removeItem("userName");
-                        window.location.reload();
-                    }
-                };
-            }
+        if (navBtn && navWrapper) {
+            navBtn.style.display = "none";
+            const avatar = document.createElement("div");
+            avatar.className = "user-avatar";
+            avatar.textContent = savedName.charAt(0).toUpperCase();
+            navWrapper.appendChild(avatar);
+            
+            avatar.onclick = () => { 
+                if (confirm("Log out?")) { 
+                    localStorage.removeItem("userName"); 
+                    window.location.reload(); 
+                } 
+            };
         }
-    })();
-});
 
-// Search Donors
+        if (heroBtnArea) {
+            heroBtnArea.style.display = "none";
+        }
+    }
+})();
 
-/*const donorSearchBtn = document.getElementById("searchBtn");
 
+
+    //Search Donors
+   // البحث عن المتبرعين (تعديل منطق التحقق)
 if (donorSearchBtn) {
-
     donorSearchBtn.addEventListener("click", async () => {
+        const bloodTypeField = document.getElementById("bloodType");
+        const cityField = document.getElementById("city");
+        const resultsContainer = document.getElementById("results-Container");
+        const resultsMeta = document.querySelector(".results-meta");
+        const donorCard = document.getElementById("donorCard");
+        const noResults = document.getElementById("no-results"); 
 
-        const bloodType = document.getElementById("bloodType").value;
-        const city = document.getElementById("city").value;
+        clearSoftError(bloodTypeField);
+        clearSoftError(cityField);
+
+        const isBloodValid = bloodTypeField.value.trim() !== "";
+        const isCityValid = cityField.value.trim() !== "";
+
+        if (!isBloodValid) showSoftError(bloodTypeField, "Please select Blood Type.");
+        if (!isCityValid) showSoftError(cityField, "Please select City.");
+        if (!isBloodValid || !isCityValid) return;
+        let url = `/search-donors?bloodType=${encodeURIComponent(bloodTypeField.value)}&city=${encodeURIComponent(cityField.value)}`;
 
         try {
-
-            const response = await fetch(
-                `/search-donors?bloodType=${bloodType}&city=${city}`
-            );
-
-            const donors = await response.json();
-
-            const resultsContainer = document.getElementById("resultsContainer");
-            const resultsMeta = document.querySelector(".results-meta");
-
-            resultsContainer.innerHTML = "";
-
-            resultsMeta.textContent =
-                `${donors.length} Heroes available for donation`;
-
-            if (donors.length === 0) {
-
-                resultsContainer.innerHTML = `
-                    <p style="font-size:18px; color:#666;">
-                        No donors found.
-                    </p>
-                `;
-
-                return;
-            }
-
-            donors.forEach(donor => {
-
-                resultsContainer.innerHTML += `
-
-                    <div class="donor-card">
-
-                        <div class="donor-main-info">
-
-                            <div class="blood-badge">
-                                ${donor.blood_type}
-                            </div>
-
-                            <div class="donor-text">
-
-                                <h3>
-                                    ${donor.first_name} ${donor.last_name}
-                                </h3>
-
-                                <p>
-                                    <i class="fa-solid fa-location-dot"></i>
-                                    ${donor.city}, Saudi Arabia
-                                </p>
-
-                                <span class="availability">
-                                    AVAILABLE NOW
-                                </span>
-
-                            </div>
-                        </div>
-
-                        <a href="tel:${donor.mobile}" class="btn-solid-dark">
-                            CONTACT
-                        </a>
-
-                    </div>
-
-                `;
-            });
-
-        } catch (error) {
-
-            console.error("Search Error:", error);
-
-        }
-
-    });
-
-}*/
-
-const donorSearchBtn = document.getElementById("searchBtn");
-
-if (donorSearchBtn) {
-
-    donorSearchBtn.addEventListener("click", async () => {
-
-        const bloodType =
-            document.getElementById("bloodType").value.trim();
-
-        const city =
-            document.getElementById("city").value.trim();
-
-            if (!bloodType || !city) {
-
-              alert("Please select both Blood Type and City.");
-
-              return;
-           }
-
-        let url = "/search-donors?";
-
-        if (bloodType) {
-            url += `bloodType=${encodeURIComponent(bloodType)}&`;
-        }
-
-        if (city) {
-            url += `city=${encodeURIComponent(city)}`;
-        }
-
-        console.log(url);
-
-        try {
-
             const response = await fetch(url);
+            if (!response.ok) { alert("Database connection failed."); return; }
 
             const donors = await response.json();
 
-            console.log(donors);
-
-            const resultsContainer =
-                document.getElementById("resultsContainer");
-
-            const resultsMeta =
-                document.querySelector(".results-meta");
-
             resultsContainer.innerHTML = "";
-
-            resultsMeta.textContent =
-                `${donors.length} Heroes available for donation`;
+            resultsMeta.textContent = `${donors.length} Heroes available for donation`;
 
             if (donors.length === 0) {
-
-                resultsContainer.innerHTML = `
-                    <p style="font-size:18px; color:#666;">
-                        No donors found.
-                    </p>
-                `;
-
+                if (noResults) {
+                    const noResultsMsg = noResults.cloneNode(true);
+                    noResultsMsg.style.display = "block";
+                    noResultsMsg.id = ""; 
+                    resultsContainer.appendChild(noResultsMsg);
+                }
                 return;
             }
 
             donors.forEach(donor => {
-
-                resultsContainer.innerHTML += `
-                    <div class="donor-card">
-
-                        <div class="donor-main-info">
-
-                            <div class="blood-badge">
-                                ${donor.blood_type}
-                            </div>
-
-                            <div class="donor-text">
-
-                                <h3>
-                                    ${donor.first_name}
-                                    ${donor.last_name}
-                                </h3>
-
-                                <p>
-                                    <i class="fa-solid fa-location-dot"></i>
-                                    ${donor.city}, Saudi Arabia
-                                </p>
-
-                                <span class="availability">
-                                    AVAILABLE NOW
-                                </span>
-
-                            </div>
-
-                        </div>
-
-                        <a href="tel:${donor.mobile}"
-                           class="btn-solid-dark">
-                           CONTACT
-                        </a>
-
-                    </div>
-                `;
+                if (donorCard) {
+                    const newCard = donorCard.cloneNode(true);
+                    newCard.style.display = "flex"; 
+                    newCard.id = "";
+                    newCard.querySelector(".blood-badge").textContent = donor.blood_type;
+                    newCard.querySelector(".donor-name").textContent = `${donor.first_name} ${donor.last_name}`;
+                    newCard.querySelector(".donor-city").textContent = donor.city;
+                    newCard.querySelector(".contact-link").href = `tel:${donor.mobile}`;
+                    resultsContainer.appendChild(newCard);
+                }
             });
-
         } catch (error) {
-
             console.error("Search Error:", error);
-
+            alert("Server is offline.");
         }
-
     });
-
 }
 
-// --- Contact Us Page Logic ---
 
-document.addEventListener("DOMContentLoaded", function () {
-    const contactForm = document.getElementById("contactForm");
-    const contactSuccessMsg = document.getElementById("contactSuccessMsg");
-
-    // Show error message under the input
-    function showContactError(input, message) {
-        clearContactError(input);
-        if (!input) return;
-
-        input.classList.add("input-error");
-
-        const err = document.createElement("span");
-        err.className = "error-msg";
-        err.textContent = message;
-
-        input.insertAdjacentElement("afterend", err);
-    }
-
-    // Remove old error message
-    function clearContactError(input) {
-        if (!input) return;
-
-        input.classList.remove("input-error");
-
-        const next = input.nextElementSibling;
-        if (next && next.classList.contains("error-msg")) {
-            next.remove();
-        }
-    }
-    // Check if field is empty
-    function validateContactRequired(input, message) {
-        if (!input.value.trim()) {
-            showContactError(input, message);
-            return false;
-        }
-
-        clearContactError(input);
-        return true;
-    }
-
-    // Validate name (letters only)
-    function validateContactName(input, message) {
-        const re = /^[A-Za-z\u0600-\u06FF ]{2,}$/;
-
-        if (!input.value.trim()) {
-            showContactError(input, message);
-            return false;
-        }
-
-        if (!re.test(input.value.trim())) {
-            showContactError(input, "Name must contain letters only.");
-            return false;
-        }
-
-        clearContactError(input);
-        return true;
-    }
-
-    // Validate email format
-    function validateContactEmail(input) {
-        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-        if (!input.value.trim()) {
-            showContactError(input, "Email is required.");
-            return false;
-        }
-
-        if (!re.test(input.value.trim())) {
-            showContactError(input, "Please enter a valid email address.");
-            return false;
-        }
-
-        clearContactError(input);
-        return true;
-    }
-
-    // Validate Saudi mobile number
-    function validateContactMobile(input) {
-        const re = /^0[0-9]{9}$/;
-
-        if (!re.test(input.value.trim())) {
-            showContactError(input, " Must start with 0 and contain 10 digits.");
-            return false;
-        }
-
-        clearContactError(input);
-        return true;
-    }
-
+    //Contact Us  
     if (contactForm) {
-        // Handle form submission
-        contactForm.addEventListener("submit", function (e) {
+        contactForm.addEventListener("submit", async function (e) {
             e.preventDefault();
 
             const fName = document.getElementById("firstName");
             const lName = document.getElementById("lastName");
-            const gender = document.getElementById("gender");
             const mobile = document.getElementById("mobile");
-            const dob = document.getElementById("dob");
             const email = document.getElementById("email");
-            const lang = document.getElementById("language");
+            const language = document.getElementById("language");
             const message = document.getElementById("message");
 
             let isFormValid = true;
-
-            if (!validateContactName(fName, "First name is required.")) isFormValid = false;
-            if (!validateContactName(lName, "Last name is required.")) isFormValid = false;
-            if (!validateContactRequired(gender, "Please select gender.")) isFormValid = false;
-            if (!validateContactMobile(mobile)) isFormValid = false;
-            if (!validateContactRequired(dob, "Date of birth is required.")) isFormValid = false;
-            if (!validateContactEmail(email)) isFormValid = false;
-            if (!validateContactRequired(lang, "Please select a language.")) isFormValid = false;
-
-            if (message.value.trim().length < 10) {
-                showContactError(message, "Message must be at least 10 characters.");
-                isFormValid = false;
-            } else {
-                clearContactError(message);
-            }
+            if (!fName.value.trim()) { showSoftError(fName, "First name is required."); isFormValid = false; }
+            if (!lName.value.trim()) { showSoftError(lName, "Last name is required."); isFormValid = false; }
+            if (!validateMobile(mobile)) { isFormValid = false; }
+            if (!validateEmail(email)) { isFormValid = false; }
+            if (!language.value) { showSoftError(language, "Please select your preferred language."); isFormValid = false; }
+            if (message.value.trim().length < 10) { showSoftError(message, "Message too short."); isFormValid = false; }
 
             if (isFormValid) {
-                submitContactAJAX();
+                try {
+                    const formData = new FormData(contactForm);
+                    const response = await fetch('/contact', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(Object.fromEntries(formData))
+                    });
+                    if (response.ok) {
+                        contactForm.style.display = "none";
+                        document.getElementById("contact-Success-Msg").style.display = "block";
+                    } else { alert("Could not send message."); }
+                } catch (err) { alert("Failed to reach server."); }
             }
         });
     }
 
-    // Send form data to backend
-    async function submitContactAJAX() {
-        const formData = new FormData(contactForm);
-        const data = Object.fromEntries(formData.entries());
-
-        if (window.location.port === "5500") {
-            console.log("Live Server detected: Showing success message for testing.");
-            showSuccessUI();
-        }
-
-        try {
-            const response = await fetch('/contact', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
-            });
-
-            if (response.ok) {
-                showSuccessUI();
-            } else if (window.location.port !== "5500") {
-                alert("Server error. Please try again later.");
-            }
-        } catch (error) {
-            console.error("Fetch Error:", error);
-
-            if (window.location.port !== "5500") {
-                alert("Connection error. Ensure the server is running.");
-            }
-        }
-    }
-
-    // Show success message 
-    function showSuccessUI() {
-        contactForm.style.display = "none";
-        contactSuccessMsg.style.display = "block";
-        window.scrollTo({ top: 100, behavior: "smooth" });
-    }
-
-    document.querySelectorAll("#contactForm input, #contactForm select, #contactForm textarea").forEach(el => {
-        el.addEventListener("input", () => clearContactError(el));
+    document.querySelectorAll("input, select, textarea").forEach(el => {
+        el.addEventListener("input", () => clearSoftError(el));
     });
+
+//Handel Enter key
+document.getElementById("step1")?.addEventListener("keypress", function (e) {
+    if (e.key === "Enter") {
+        document.getElementById("nextStep1").click();
+    }
+});
+
+document.getElementById("step2")?.addEventListener("keypress", function (e) {
+    if (e.key === "Enter") {
+        document.getElementById("nextStep2").click();
+    }
+});
+
+document.getElementById("step3")?.addEventListener("keypress", function (e) {
+    if (e.key === "Enter") {
+        document.getElementById("submitSignUp").click();
+    }
+});
+
+document.querySelector(".search-filter-form")?.addEventListener("keypress", function (e) {
+    if (e.key === "Enter") {
+        e.preventDefault();
+        document.getElementById("searchBtn").click();
+    }
+});
+
+document.getElementById("contactForm")?.addEventListener("keypress", function (e) {
+    if (e.key === "Enter") {
+        if (e.target.id !== "message") {
+            e.preventDefault();
+            document.querySelector(".send-btn").click();
+        }
+    }
+});
 });
