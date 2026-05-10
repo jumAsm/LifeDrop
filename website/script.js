@@ -13,27 +13,42 @@ document.addEventListener("DOMContentLoaded", function () {
     //Validation Functions
     //Errors for users
     function showSoftError(input, message) {
-        clearSoftError(input);
-        if (!input) return;
-        input.classList.add("input-error");
-        const err = document.createElement("span");
-        err.className = "error-msg";
-        err.textContent = message;
+    clearSoftError(input);
+
+    if (!input) return;
+
+    input.classList.add("input-error");
+
+    const err = document.createElement("span");
+    err.className = "error-msg";
+    err.textContent = message;
+
+    if (input.parentElement.classList.contains("input-group")) {
         input.parentElement.appendChild(err);
+    } else {
+        input.insertAdjacentElement("afterend", err);
     }
+}
 
     function clearSoftError(input) {
-        if (!input) return;
-        input.classList.remove("input-error");
-        const next = input.nextElementSibling;
-        if (next && next.classList.contains("error-msg")) next.remove();
+    if (!input) return;
+
+    input.classList.remove("input-error");
+
+    const parentError = input.parentElement.querySelector(".error-msg");
+    if (parentError) parentError.remove();
+
+    const next = input.nextElementSibling;
+    if (next && next.classList.contains("error-msg")) {
+        next.remove();
     }
+}
 
     //Email validation 
     function validateEmail(input) {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!input.value.trim()) { showSoftError(input, "Email is required."); return false; }
-        if (!re.test(input.value.trim())) { showSoftError(input, "Invalid email format."); return false; }
+        if (!re.test(input.value.trim())) { showSoftError(input, "Please enter a valid email address (example@gmail.com)."); return false; }
         clearSoftError(input); return true;
     }
 
@@ -52,11 +67,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //Mobile number validation
     function validateMobile(input) {
-        const re = /^[0-9]{10}$/;
-        if (!re.test(input.value.trim())) { showSoftError(input, "Mobile must be 10 digits."); return false; }
-        clearSoftError(input); return true;
+
+    const re = /^05[0-9]{8}$/;
+
+    if (!input.value.trim()) {
+        showSoftError(input, "Mobile number is required.");
+        return false;
     }
 
+    if (!re.test(input.value.trim())) {
+        showSoftError(input, "Mobile number must start with 05 and contain 10 digits.");
+        return false;
+    }
+
+    clearSoftError(input);
+    return true;
+}
     //Sign Up Steps 
     function goToStep(step) {
         const currentDiv = document.getElementById("step" + currentStep);
@@ -271,7 +297,12 @@ if (donorSearchBtn) {
 
         if (!isBloodValid) showSoftError(bloodTypeField, "Please select Blood Type.");
         if (!isCityValid) showSoftError(cityField, "Please select City.");
-        if (!isBloodValid || !isCityValid) return;
+        if (!isBloodValid || !isCityValid){
+        resultsList.innerHTML = "";
+        resultsMeta.textContent = "0 Heroes available for donation";
+        return;
+        }
+
 
         let url = `/search-donors?bloodType=${encodeURIComponent(bloodTypeField.value)}&city=${encodeURIComponent(cityField.value)}`;
 
@@ -300,7 +331,6 @@ if (donorSearchBtn) {
                     newCard.querySelector(".donor-name").textContent = `${donor.first_name} ${donor.last_name}`;
                     newCard.querySelector(".donor-city").textContent = donor.city;
                     newCard.querySelector(".contact-link").href = `tel:${donor.mobile}`;
-                    
                     resultsList.appendChild(newCard);
                 }
             });
