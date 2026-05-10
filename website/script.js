@@ -191,7 +191,7 @@ document.addEventListener("DOMContentLoaded", function () {
     } 
 });
 
-    //Sign In Submission
+//Sign In Submission
     signInForm?.addEventListener("submit", function (e) {
         e.preventDefault();
         const em = document.getElementById("siEmail"); 
@@ -254,26 +254,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-    //Search Donors
-   // البحث عن المتبرعين (تعديل منطق التحقق)
+//Search Donors
 if (donorSearchBtn) {
     donorSearchBtn.addEventListener("click", async () => {
         const bloodTypeField = document.getElementById("bloodType");
         const cityField = document.getElementById("city");
-        const resultsContainer = document.getElementById("results-Container");
+        const resultsList = document.getElementById("results-list");
         const resultsMeta = document.querySelector(".results-meta");
-        const donorCard = document.getElementById("donorCard");
-        const noResults = document.getElementById("no-results"); 
+        const donorCard = document.getElementById("donorCard"); 
+        const noResults = document.getElementById("no-results");
 
         clearSoftError(bloodTypeField);
         clearSoftError(cityField);
-
         const isBloodValid = bloodTypeField.value.trim() !== "";
         const isCityValid = cityField.value.trim() !== "";
 
         if (!isBloodValid) showSoftError(bloodTypeField, "Please select Blood Type.");
         if (!isCityValid) showSoftError(cityField, "Please select City.");
         if (!isBloodValid || !isCityValid) return;
+
         let url = `/search-donors?bloodType=${encodeURIComponent(bloodTypeField.value)}&city=${encodeURIComponent(cityField.value)}`;
 
         try {
@@ -282,29 +281,27 @@ if (donorSearchBtn) {
 
             const donors = await response.json();
 
-            resultsContainer.innerHTML = "";
+            resultsList.innerHTML = "";
             resultsMeta.textContent = `${donors.length} Heroes available for donation`;
 
             if (donors.length === 0) {
-                if (noResults) {
-                    const noResultsMsg = noResults.cloneNode(true);
-                    noResultsMsg.style.display = "block";
-                    noResultsMsg.id = ""; 
-                    resultsContainer.appendChild(noResultsMsg);
-                }
+                const noMsg = noResults.cloneNode(true);
+                noMsg.style.display = "block";
+                resultsList.appendChild(noMsg);
                 return;
             }
 
             donors.forEach(donor => {
                 if (donorCard) {
                     const newCard = donorCard.cloneNode(true);
-                    newCard.style.display = "flex"; 
-                    newCard.id = "";
+                    newCard.style.display = "flex";
+                    newCard.id = ""; 
                     newCard.querySelector(".blood-badge").textContent = donor.blood_type;
                     newCard.querySelector(".donor-name").textContent = `${donor.first_name} ${donor.last_name}`;
                     newCard.querySelector(".donor-city").textContent = donor.city;
                     newCard.querySelector(".contact-link").href = `tel:${donor.mobile}`;
-                    resultsContainer.appendChild(newCard);
+                    
+                    resultsList.appendChild(newCard);
                 }
             });
         } catch (error) {
@@ -313,7 +310,6 @@ if (donorSearchBtn) {
         }
     });
 }
-
 
     //Contact Us  
     if (contactForm) {
