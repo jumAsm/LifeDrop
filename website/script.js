@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let currentStep = 1;
 
 
-
 //Validation Functions
     //Errors for users
     function showSoftError(input, message) {
@@ -152,7 +151,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    //Sign Up - Step 2 Verification
+  //Sign Up - Step 2 Verification
 document.getElementById("nextStep2")?.addEventListener("click", () => {
     const isGenderOk = validateRequired(document.getElementById("gender"), "Gender required.");
     const isCityOk = validateRequired(document.getElementById("city"), "City required.");
@@ -171,13 +170,14 @@ document.getElementById("nextStep2")?.addEventListener("click", () => {
 
     //Backend Communication AJAX - Fetch
     //Sign Up Submission - step 3
-    document.getElementById("submitSignUp")?.addEventListener("click", function () {
+   document.getElementById("submitSignUp")?.addEventListener("click", function () {
         const bloodField = document.getElementById("bloodType");
         const countField = document.getElementById("donationCount");
         const availField = document.getElementById("availability");
         const isBloodOk = validateRequired(bloodField, "Blood type selection required.");
         const isCountOk = validateRequired(countField, "Please select how many times you donated.");
         const isAvailOk = validateRequired(availField, "Please select your availability status.");
+        const lastDonationVal = document.getElementById("lastDonation").value;
 
         if (isBloodOk && isCountOk && isAvailOk) {
             const formData = {
@@ -191,7 +191,7 @@ document.getElementById("nextStep2")?.addEventListener("click", () => {
                 city: document.getElementById("city").value,
                 nationality: document.getElementById("nationality").value,
                 bloodType: bloodField.value,
-                lastDonation: document.getElementById("lastDonation").value || null,
+                lastDonation: lastDonationVal === "" ? null : lastDonationVal,
                 donationCount: countField.value,
                 availability: availField.value
             };
@@ -218,7 +218,7 @@ document.getElementById("nextStep2")?.addEventListener("click", () => {
     });
 
     //Sign In Submission
-    signInForm?.addEventListener("submit", function (e) {
+   signInForm?.addEventListener("submit", function (e) {
         e.preventDefault();
         const em = document.getElementById("siEmail");
         const ps = document.getElementById("siPassword");
@@ -340,7 +340,7 @@ document.getElementById("nextStep2")?.addEventListener("click", () => {
     }
 
     //Contact Us  
-   if (contactForm) {
+  if (contactForm) {
     contactForm.addEventListener("submit", async function (e) {
         e.preventDefault();
         const isLangOk = validateRequired(document.getElementById("language"), "Please select language.");
@@ -367,7 +367,6 @@ document.getElementById("nextStep2")?.addEventListener("click", () => {
             }
         });
     }
-
     document.querySelectorAll("input, select, textarea").forEach(el => {
         el.addEventListener("input", () => clearSoftError(el));
     });

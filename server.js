@@ -20,6 +20,15 @@ const db = mysql.createPool({
 
 console.log("Database is ready and waiting for requests!");
 
+function printErrors(errors) {
+    let msg = "<ul>";
+    errors.forEach((err) => {
+        msg += "<li>" + err.msg + "</li>";
+    });
+    msg += "</ul>";
+    return msg;
+}
+
 //Route to handle Sign Up form submissions
 app.post("/register", [
     check("firstName").trim().notEmpty().withMessage("First name is required").escape(),
@@ -36,8 +45,13 @@ app.post("/register", [
     check("availability").notEmpty().withMessage("Availability status is required").escape()
 ], (req, res) => {
     const errors = validationResult(req);
+
     if (!errors.isEmpty()) {
-        return res.status(400).json({ success: false, errors: errors.array() });
+        const errorHtml = 
+            "<h1>Sorry, we found validation errors with your submission</h1>" + 
+            printErrors(errors.array()) + 
+            "<p><a href='register.html'>Click here to return to form</a></p>";
+        return res.send(errorHtml); 
     }
 
     const {
@@ -50,14 +64,11 @@ app.post("/register", [
     db.query(checkEmailSql, [email], (err, results) => {
         if (err) {
             console.error("Database Check Error:", err);
-            return res.status(500).json({ success: false, message: "Internal server error" });
+            return res.send("<h1>Server Error</h1><p>Internal database error. Please try again later.</p><a href='register.html'>Back</a>");
         }
 
         if (results.length > 0) {
-            return res.json({
-                success: false,
-                message: "This email is already registered. Please Sign In instead."
-            });
+            return res.send("<h1>Registration Error</h1><p>This email is already registered. Please <a href='register.html'>Sign In</a> instead.</p>");
         }
 
         const sql = `INSERT INTO donors 
@@ -73,14 +84,10 @@ app.post("/register", [
         db.query(sql, values, (err, result) => {
             if (err) {
                 console.error("Error saving to database:", err);
-                return res.status(500).json({ success: false, message: "Database insertion failed" });
+                return res.send("<h1>Registration Failed</h1><p>Database insertion failed. Please check your data.</p><a href='register.html'>Back</a>");
             }
 
-            res.json({
-                success: true,
-                message: "New hero registered successfully!",
-                firstName: firstName
-            });
+            res.send("<h1>Registration Successful!</h1><p>Thank you for joining LifeDrop, " + firstName + "!</p><a href='index.html'>Go to Home Page</a>");
         });
     });
 });
@@ -90,29 +97,37 @@ app.post("/login", [
     check("email").isEmail().withMessage("Invalid email format").normalizeEmail().escape(),
     check("password").notEmpty().withMessage("Password is required").escape()
 ], (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        const errorHtml = 
+            "<h1>Login Failed</h1>" + 
+            printErrors(errors.array()) + 
+            "<p><a href='register.html'>Try again</a></p>";
+        return res.send(errorHtml);
+    }
+    
     const { email, password } = req.body;
     const checkEmailSql = "SELECT * FROM donors WHERE LOWER(email) = LOWER(?)";
 
     db.query(checkEmailSql, [email], (err, results) => {
         if (err) {
             console.error("Database Login Error:", err);
-            return res.status(500).json({ success: false, message: "Internal Database Error" });
+            return res.send("<h1>Internal Error</h1><p>Database connection failed.</p><a href='register.html'>Back</a>");
         }
 
         if (results.length === 0) {
-            return res.json({
-                success: false,
-                message: "This email is not registered. Please create an account first."
-            });
+            return res.send("<h1>Login Error</h1><p>This email is not registered. Please <a href='register.html'>create an account</a> first.</p>");
         }
         const user = results[0];
         if (user.password === password) {
-            res.json({ success: true, firstName: user.first_name });
+            res.send("<h1>Welcome Back, " + user.first_name + "!</h1><p>Login successful.</p><a href='index.html'>Continue to Home Page</a>");
         } else {
-            res.json({ success: false, message: "Incorrect password. Please try again." });
+            res.send("<h1>Login Error</h1><p>Incorrect password. Please try again.</p><a href='register.html'>Back to Login</a>");
         }
     });
 });
+
+
 
 //Route to handle Accounts 
 app.post("/check-email", (req, res) => {
@@ -130,16 +145,22 @@ app.post("/check-email", (req, res) => {
 
 //Route to handle Contact Us form submissions
 app.post("/contact", [
-    check("email").isEmail().normalizeEmail().escape(),
-    check("firstName").trim().notEmpty().escape(),
-    check("lastName").trim().notEmpty().escape(),
-   check("mobile").matches(/^05[0-9]{8}$/).withMessage("Mobile number must start with 05 and contain 10 digits").escape(),
-    check("message").trim().isLength({ min: 10 }).escape()
+    check("email").isEmail().withMessage("Invalid email format").normalizeEmail().escape(),
+    check("firstName").trim().notEmpty().withMessage("First name is required").escape(),
+    check("lastName").trim().notEmpty().withMessage("Last name is required").escape(),
+    check("mobile").matches(/^05[0-9]{8}$/).withMessage("Mobile number must start with 05 and contain 10 digits").escape(),
+    check("language").notEmpty().withMessage("Preferred language is required").escape(), 
+    check("message").trim().isLength({ min: 10 }).withMessage("Message must be at least 10 characters long").escape()
 ], (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        return res.status(400).json({ success: false, errors: errors.array() });
+        const errorHtml = 
+            "<h1>Submission Errors</h1>" + 
+            printErrors(errors.array()) + 
+            "<p><a href='contact.html'>Go back</a></p>";
+        return res.send(errorHtml);
     }
+    
     const { firstName, lastName, mobile, email, language, message } = req.body;
     const sql = `INSERT INTO messages (first_name, last_name, mobile, email, language, message) VALUES (?, ?, ?, ?, ?, ?)`;
     const values = [firstName, lastName, mobile, email, language, message];
@@ -147,11 +168,12 @@ app.post("/contact", [
     db.query(sql, values, (err, result) => {
         if (err) {
             console.error("Error saving message: ", err);
-            return res.status(500).json({ success: false, message: "Database error" });
+            return res.send("<h1>Database Error</h1><p>Sorry, we encountered a server error.</p><a href='contact.html'>Try again</a>");
         }
-        res.json({ success: true, message: "Your message has been sent successfully." });
+        res.send("<h1>Success!</h1><p>Your message has been sent successfully.</p><a href='index.html'>Return Home</a>");
     });
 });
+
 
 
 //Route to handle Search submissions
@@ -195,8 +217,8 @@ app.get("/search-donors", (req, res) => {
     });
 });
 
-
 const PORT = 4000;
 app.listen(PORT, () => {
     console.log(`server on: http://localhost:${PORT}`);
 });
+
