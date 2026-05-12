@@ -18,8 +18,7 @@ const db = mysql.createPool({
     queueLimit: 0
 });
 
-console.log("Database Pool is ready and waiting for requests!");
-
+console.log("Database is ready and waiting for requests!");
 
 //Route to handle Sign Up form submissions
 app.post("/register", [

@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    //Global Variables 
+//Global Variables 
     const btnSignIn = document.getElementById("btnSignIn");
     const btnSignUp = document.getElementById("btnSignUp");
     const signInForm = document.getElementById("signInForm");
@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-    //Validation Functions
+//Validation Functions
     //Errors for users
     function showSoftError(input, message) {
     clearSoftError(input);
@@ -91,9 +91,8 @@ document.addEventListener("DOMContentLoaded", function () {
         if (nextDiv) nextDiv.style.display = "block";
         updateStepsBar(step);
         currentStep = step;
-        window.scrollTo({ top: 200, behavior: "smooth" });
+       
     }
-
 
 
     //Event Handlers 
@@ -299,21 +298,17 @@ if (donorSearchBtn) {
         if (!isCityValid) showSoftError(cityField, "Please select City.");
         if (!isBloodValid || !isCityValid){
         resultsList.innerHTML = "";
-        resultsMeta.textContent = "0 Heroes available for donation";
+        resultsMeta.textContent = "Heroes available for donation";
         return;
         }
 
 
         let url = `/search-donors?bloodType=${encodeURIComponent(bloodTypeField.value)}&city=${encodeURIComponent(cityField.value)}`;
-
         try {
             const response = await fetch(url);
             if (!response.ok) { alert("Database connection failed."); return; }
 
             const donors = await response.json();
-
-            resultsList.innerHTML = "";
-            resultsMeta.textContent = `${donors.length} Heroes available for donation`;
 
             if (donors.length === 0) {
                 const noMsg = noResults.cloneNode(true);
@@ -322,6 +317,8 @@ if (donorSearchBtn) {
                 return;
             }
 
+            resultsList.innerHTML = "";
+            resultsMeta.textContent = `${donors.length} Heroes available for donation`;
             donors.forEach(donor => {
                 if (donorCard) {
                     const newCard = donorCard.cloneNode(true);
