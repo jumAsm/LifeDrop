@@ -26,10 +26,15 @@ app.post("/register", [
     check("lastName").trim().notEmpty().withMessage("Last name is required").escape(),
     check("email").isEmail().withMessage("Invalid email format").normalizeEmail().escape(),
     check("password").isLength({ min: 8 }).withMessage("Password must be 8+ characters").escape(),
-    check("mobile").isLength({ min: 10, max: 10 }).isNumeric().withMessage("Mobile must be 10 digits").escape(),
-    check("bloodType").notEmpty().withMessage("Blood type is required").escape()
+    check("mobile").matches(/^05[0-9]{8}$/).withMessage("Mobile number must start with 05 and contain 10 digits").escape(),
+    check("gender").notEmpty().withMessage("Gender is required").escape(),
+    check("dob").notEmpty().withMessage("Date of birth is required").isDate().withMessage("Invalid date format").escape(),
+    check("city").notEmpty().withMessage("City is required").escape(),
+    check("nationality").notEmpty().withMessage("Nationality is required").escape(),
+    check("bloodType").notEmpty().withMessage("Blood type is required").escape(),
+    check("donationCount").notEmpty().withMessage("Donation count info is required").escape(),
+    check("availability").notEmpty().withMessage("Availability status is required").escape()
 ], (req, res) => {
-
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ success: false, errors: errors.array() });
@@ -128,7 +133,7 @@ app.post("/contact", [
     check("email").isEmail().normalizeEmail().escape(),
     check("firstName").trim().notEmpty().escape(),
     check("lastName").trim().notEmpty().escape(),
-    check("mobile").isLength({ min: 10, max: 10 }).escape(),
+   check("mobile").matches(/^05[0-9]{8}$/).withMessage("Mobile number must start with 05 and contain 10 digits").escape(),
     check("message").trim().isLength({ min: 10 }).escape()
 ], (req, res) => {
     const errors = validationResult(req);

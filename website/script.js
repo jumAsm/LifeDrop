@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-    //Validation Functions
+//Validation Functions
     //Errors for users
     function showSoftError(input, message) {
         clearSoftError(input);
@@ -51,11 +51,12 @@ document.addEventListener("DOMContentLoaded", function () {
         const isEmailOk = validateEmail(document.getElementById("email"));
         return isFnameOk && isLnameOk && isMobileOk && isEmailOk;
     }
+
     //Email validation 
     function validateEmail(input) {
-        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const format = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!input.value.trim()) { showSoftError(input, "Email is required."); return false; }
-        if (!re.test(input.value.trim())) { showSoftError(input, "Please enter a valid email address (example@gmail.com)."); return false; }
+        if (!format.test(input.value.trim())) { showSoftError(input, "Please enter a valid email address (example@gmail.com)."); return false; }
         clearSoftError(input); return true;
     }
 
@@ -74,14 +75,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //Mobile number validation
     function validateMobile(input) {
-        const re = /^05[0-9]{8}$/;
-
+        const format = /^05[0-9]{8}$/;
         if (!input.value.trim()) {
             showSoftError(input, "Mobile number is required.");
             return false;
         }
-
-        if (!re.test(input.value.trim())) {
+        if (!format.test(input.value.trim())) {
             showSoftError(input, "Mobile number must start with 05 and contain 10 digits.");
             return false;
         }
@@ -155,13 +154,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //Sign Up - Step 2 Verification
 document.getElementById("nextStep2")?.addEventListener("click", () => {
-    const isBasicOk = checkBasicInfo(); 
     const isGenderOk = validateRequired(document.getElementById("gender"), "Gender required.");
     const isCityOk = validateRequired(document.getElementById("city"), "City required.");
     const isDobOk = validateRequired(document.getElementById("dob"), "Date of birth is required.");
     const isNationalityOk = validateRequired(document.getElementById("nationality"), "Nationality required.");
 
-    if (isBasicOk && isGenderOk && isCityOk && isDobOk && isNationalityOk) {
+    if (checkBasicInfo() && isGenderOk && isCityOk && isDobOk && isNationalityOk) {
         goToStep(3);
     } 
 });
@@ -305,7 +303,6 @@ document.getElementById("nextStep2")?.addEventListener("click", () => {
                 return;
             }
 
-
             let url = `/search-donors?bloodType=${encodeURIComponent(bloodTypeField.value)}&city=${encodeURIComponent(cityField.value)}`;
             try {
                 const response = await fetch(url);
@@ -321,7 +318,6 @@ document.getElementById("nextStep2")?.addEventListener("click", () => {
                     resultsList.appendChild(noMsg);
                     return;
                 }
-
                 resultsList.innerHTML = "";
                 resultsMeta.textContent = `${donors.length} Heroes available for donation`;
                 donors.forEach(donor => {
@@ -347,7 +343,6 @@ document.getElementById("nextStep2")?.addEventListener("click", () => {
    if (contactForm) {
     contactForm.addEventListener("submit", async function (e) {
         e.preventDefault();
-
         const isLangOk = validateRequired(document.getElementById("language"), "Please select language.");
         const isMsgOk = validateRequired(document.getElementById("message"), "Message required.");
 

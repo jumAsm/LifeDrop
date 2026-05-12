@@ -848,7 +848,7 @@ footer-logo {
     border-radius: 16px;
     padding: 20px 25px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.02);
-    transition: all 0.35s ease;
+     transform: all scale(1.05);
     cursor: pointer;
 }
 
