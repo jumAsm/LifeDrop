@@ -344,7 +344,12 @@ document.getElementById("nextStep2")?.addEventListener("click", () => {
     contactForm.addEventListener("submit", async function (e) {
         e.preventDefault();
         const isLangOk = validateRequired(document.getElementById("language"), "Please select language.");
-        const isMsgOk = validateRequired(document.getElementById("message"), "Message required.");
+        const messageField = document.getElementById("message"); 
+        let isMsgOk = validateRequired(messageField, "Message is required.");
+        if (isMsgOk && messageField.value.trim().length < 10) { 
+            showSoftError(messageField, "Message too short.");
+            isMsgOk = false;
+        }
 
         if (checkBasicInfo() && isLangOk && isMsgOk) {
                 try {
