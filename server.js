@@ -128,7 +128,6 @@ app.post("/login", [
 });
 
 
-
 //Route to handle Accounts 
 app.post("/check-email", (req, res) => {
     const { email } = req.body;
@@ -177,45 +176,35 @@ app.post("/contact", [
 
 
 //Route to handle Search submissions
-app.get("/search-donors", (req, res) => {
-    const bloodType = req.query.bloodType?.trim();
-    const city = req.query.city?.trim();
+app.get("/search-donors", [
+    check("bloodType").notEmpty().withMessage("Please select a blood type to search").escape(),
+    check("city").notEmpty().withMessage("Please select a city to search").escape()
+], (req, res) => {
+    const errors = validationResult(req);
 
-    let sql = `
-        SELECT first_name, last_name, email, mobile, blood_type, city
-        FROM donors
-        WHERE 1=1
-    `;
+    if (!errors.isEmpty()) {
+        const errorHtml = 
+            "<h1>Search Validation Errors</h1>" + 
+            printErrors(errors.array()) + 
+            "<p><a href='search.html'>Back to Search</a></p>";
+        return res.send(errorHtml); 
+    }
 
+    const bloodType = req.query.bloodType;
+    const city = req.query.city;
+    let sql = `SELECT first_name, last_name, email, mobile, blood_type, city FROM donors WHERE 1=1`;
     let params = [];
-
-    if (bloodType) {
-        sql += " AND blood_type = ?";
-        params.push(bloodType);
-    }
-
-    if (city) {
-        sql += " AND city = ?";
-        params.push(city);
-    }
-
-    console.log("SQL:", sql);
-    console.log("PARAMS:", params);
+    if (bloodType) { sql += " AND blood_type = ?"; params.push(bloodType); }
+    if (city) { sql += " AND city = ?"; params.push(city); }
 
     db.query(sql, params, (err, results) => {
-
         if (err) {
-            console.error(err);
-            return res.status(500).json({
-                error: "Database search failed"
-            });
+            return res.send("<h1>Database Error</h1><p>Could not perform search.</p><a href='search.html'>Back</a>");
         }
-
-        console.log("RESULTS:", results);
-
-        res.json(results);
+        res.json(results); 
     });
 });
+
 
 const PORT = 4000;
 app.listen(PORT, () => {

@@ -247,7 +247,7 @@ document.getElementById("nextStep2")?.addEventListener("click", () => {
                 })
                 .catch(err => alert("Connection to server failed."));
         }
-    });
+    })
 
     //Avatar Update
     (function updateAvatar() {
@@ -279,68 +279,68 @@ document.getElementById("nextStep2")?.addEventListener("click", () => {
     })();
 
 
+//Search Donors
+   if (donorSearchBtn) {
+    donorSearchBtn.addEventListener("click", async (e) => {
+        e.preventDefault(); 
 
-    //Search Donors
-    if (donorSearchBtn) {
-        donorSearchBtn.addEventListener("click", async () => {
-            const bloodTypeField = document.getElementById("bloodType");
-            const cityField = document.getElementById("city");
-            const resultsList = document.getElementById("results-list");
-            const resultsMeta = document.querySelector(".results-meta");
-            const donorCard = document.getElementById("donorCard");
-            const noResults = document.getElementById("no-results");
+        const bloodTypeField = document.getElementById("bloodType");
+        const cityField = document.getElementById("city");
+        const resultsList = document.getElementById("results-list");
+        const resultsMeta = document.querySelector(".results-meta");
+        const donorCard = document.getElementById("donorCard");
+        const noResults = document.getElementById("no-results");
 
-            clearSoftError(bloodTypeField);
-            clearSoftError(cityField);
-            const isBloodValid = bloodTypeField.value.trim() !== "";
-            const isCityValid = cityField.value.trim() !== "";
+        clearSoftError(bloodTypeField);
+        clearSoftError(cityField);
+        const isBloodValid = bloodTypeField.value.trim() !== "";
+        const isCityValid = cityField.value.trim() !== "";
 
-            if (!isBloodValid) showSoftError(bloodTypeField, "Please select Blood Type.");
-            if (!isCityValid) showSoftError(cityField, "Please select City.");
-            if (!isBloodValid || !isCityValid) {
-                resultsList.innerHTML = "";
-                resultsMeta.textContent = "Heroes available for donation";
+        if (!isBloodValid) showSoftError(bloodTypeField, "Please select Blood Type.");
+        if (!isCityValid) showSoftError(cityField, "Please select City.");
+        if (!isBloodValid || !isCityValid) {
+            resultsList.innerHTML = "";
+            resultsMeta.textContent = "Heroes available for donation";
+            return;
+        }
+
+        let url = `/search-donors?bloodType=${encodeURIComponent(bloodTypeField.value)}&city=${encodeURIComponent(cityField.value)}`;
+        try {
+            const response = await fetch(url);
+            if (!response.ok) { alert("Database connection failed."); return; }
+
+            const donors = await response.json();
+            resultsList.innerHTML = "";
+            resultsMeta.textContent = `${donors.length} Heroes available for donation`;
+
+            if (donors.length === 0) {
+                const noMsg = noResults.cloneNode(true);
+                noMsg.style.display = "block";
+                resultsList.appendChild(noMsg);
                 return;
             }
-
-            let url = `/search-donors?bloodType=${encodeURIComponent(bloodTypeField.value)}&city=${encodeURIComponent(cityField.value)}`;
-            try {
-                const response = await fetch(url);
-                if (!response.ok) { alert("Database connection failed."); return; }
-
-                const donors = await response.json();
-                resultsList.innerHTML = "";
-                resultsMeta.textContent = `${donors.length} Heroes available for donation`;
-
-                if (donors.length === 0) {
-                    const noMsg = noResults.cloneNode(true);
-                    noMsg.style.display = "block";
-                    resultsList.appendChild(noMsg);
-                    return;
+            resultsList.innerHTML = "";
+            resultsMeta.textContent = `${donors.length} Heroes available for donation`;
+            donors.forEach(donor => {
+                if (donorCard) {
+                    const newCard = donorCard.cloneNode(true);
+                    newCard.style.display = "flex";
+                    newCard.id = "";
+                    newCard.querySelector(".blood-badge").textContent = donor.blood_type;
+                    newCard.querySelector(".donor-name").textContent = `${donor.first_name} ${donor.last_name}`;
+                    newCard.querySelector(".donor-city").textContent = donor.city;
+                    newCard.querySelector(".contact-link").href = `tel:${donor.mobile}`;
+                    resultsList.appendChild(newCard);
                 }
-                resultsList.innerHTML = "";
-                resultsMeta.textContent = `${donors.length} Heroes available for donation`;
-                donors.forEach(donor => {
-                    if (donorCard) {
-                        const newCard = donorCard.cloneNode(true);
-                        newCard.style.display = "flex";
-                        newCard.id = "";
-                        newCard.querySelector(".blood-badge").textContent = donor.blood_type;
-                        newCard.querySelector(".donor-name").textContent = `${donor.first_name} ${donor.last_name}`;
-                        newCard.querySelector(".donor-city").textContent = donor.city;
-                        newCard.querySelector(".contact-link").href = `tel:${donor.mobile}`;
-                        resultsList.appendChild(newCard);
-                    }
-                });
-            } catch (error) {
-                console.error("Search Error:", error);
-                alert("Server is offline.");
-            }
-        });
-    }
-
+            });
+        } catch (error) {
+            console.error("Search Error:", error);
+            alert("Server is offline.");
+        }
+    });
+}
     //Contact Us  
-  if (contactForm) {
+ if (contactForm) {
     contactForm.addEventListener("submit", async function (e) {
         e.preventDefault();
         const isLangOk = validateRequired(document.getElementById("language"), "Please select language.");
