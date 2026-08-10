@@ -1,4 +1,4 @@
-## <img src="images/logo.png" alt="LifeDrop Icon" width="20"/> LifeDrop – Blood Donation Platform
+## <img src="websit/images/logo.png" alt="LifeDrop Icon" width="20"/> LifeDrop – Blood Donation Platform
 
 **LifeDrop** is a full-stack web platform that connects blood donors with people in urgent need, built as a group project for the Web Development course.
 
@@ -17,7 +17,7 @@ With the site, visitors can:
 ---
 
 ### UI Preview
-![LifeDrop Website Preview](images/LifedropFull.png)
+![LifeDrop Website Preview](website/images/LifedropFull.png)
 
 ---
 
